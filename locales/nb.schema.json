@@ -1,0 +1,1446 @@
+{
+  "settings_schema": {
+    "colors": {
+      "name": "Farger",
+      "settings": {
+        "header__1": {
+          "content": "Sidemeny"
+        },
+        "header__2": {
+          "content": "Hovedfelt"
+        },
+        "header__3": {
+          "content": "Bunntekst"
+        },
+        "bg_color": {
+          "label": "Bakgrunn"
+        },
+        "txt_color": {
+          "label": "Tekst"
+        },
+        "link_color": {
+          "label": "Lenker"
+        }
+      }
+    },
+    "typography": {
+      "name": "Typografi",
+      "settings": {
+        "headings_font": {
+          "label": "Overskrifter"
+        },
+        "base_size": {
+          "label": "Grunnstørrelse"
+        },
+        "large_size": {
+          "label": "Store overskrifter",
+          "info": "Påvirker store titler fra glidebryteren, rik tekst og seksjoner med bilde med tekst."
+        },
+        "body_font": {
+          "label": "Hovedfelt"
+        },
+        "nav_size": {
+          "label": "Hovednavigasjon"
+        }
+      }
+    },
+    "product-grid": {
+      "name": "Produkt-boksvisning",
+      "settings": {
+        "aspect_ratio": {
+          "label": "Sideforhold for media"
+        },
+        "show_secondary_image": {
+          "label": "Vis andre produktmedia når markøren holdes over"
+        },
+        "enhance_featured_products": {
+          "label": "Fremhev utvalgte produkter",
+          "info": "[Få vite mer](https://shopify-support.krownthemes.com/article/471-general-settings#featured-products)"
+        },
+        "show_discount": {
+          "label": "Vis rabatt som …",
+          "options__1": {
+            "label": "Tekst"
+          },
+          "options__2": {
+            "label": "Prosentandel"
+          }
+        },
+        "caption_placement": {
+          "label": "Plassering av bildetekst",
+          "options__1": {
+            "label": "Overleggsbilde",
+            "group": "Synlig ved overrulling"
+          },
+          "options__2": {
+            "label": "Under bilde",
+            "group": "Alltid synlig"
+          }
+        },
+        "grid_color_bg": {
+          "label": "Bakgrunn for overleggsbilde med tekst"
+        },
+        "grid_color_text": {
+          "label": "Tekstfarge for overleggssbilde med tekst"
+        },
+        "header__1": {
+          "content": "Produktvurdering",
+          "info": "Legg til en produktvurderingsapp for å vise vurderinger. [Lære mer](https://help.shopify.com/en/manual/products/product-reviews/installation)"
+        },
+        "header__2": {
+          "content": "Produktanmeldelser"
+        },
+        "show_reviews": {
+          "label": "Vis vurdering"
+        }
+      }
+    },
+    "favicon": {
+      "name": "Favicon",
+      "settings": {
+        "favicon": {
+          "label": "Favicon-bilde",
+          "info": "32 x 32px .png kreves"
+        }
+      }
+    },
+    "cart-page": {
+      "name": "Handlevognbilde",
+      "settings": {
+        "cart_type": {
+          "label": "Handlevogntype",
+          "options__1": {
+            "label": "Side"
+          },
+          "options__2": {
+            "label": "Sidepanel"
+          }
+        },
+        "cart_notes": {
+          "label": "Slå på handlevognnotater"
+        },
+        "cart_buttons": {
+          "label": "Vis flere knapper relatert til betalingsområde"
+        }
+      }
+    },
+    "embellishments": {
+      "name": "Dekor",
+      "settings": {
+        "show_preloader": {
+          "label": "Forhåndslasting av bilde",
+          "info": "Viser et lite, rundt forhåndslastingsikon mens lasting av bilder på butikken din fortsatt pågår."
+        },
+        "show_breadcrumb": {
+          "label": "Vis navigasjonssti",
+          "info": "Navigasjonsstien hjelper brukerne med å navigere gjennom butikken og vises bare på kolleksjons-, produkt- og søkesider."
+        }
+      }
+    },
+    "search": {
+      "name": "Søk",
+      "settings": {
+        "predictive_search": {
+          "label": "Aktiver prediktivt søk"
+        },
+        "show_vendor": {
+          "label": "Vis selger"
+        },
+        "show_price": {
+          "label": "Vis pris"
+        },
+        "include_articles": {
+          "label": "Inkluder artikler i søkeresultater"
+        },
+        "include_pages": {
+          "label": "Inkluder sider i søkeresultater"
+        }
+      }
+    },
+    "social": {
+      "name": "Sosialt"
+    }
+  },
+  "sections": {
+    "main-cart-footer": {
+      "name": "Foreløpig sum for varer i handlevogn",
+      "blocks": {
+        "subtotal_button": {
+          "name": "Foreløpig sum og betaling"
+        }
+      }
+    },
+    "main-cart-items": {
+      "name": "Artikler i handlevogn"
+    },
+    "main-list-collections": {
+      "name": "Kolleksjonsliste-side",
+      "blocks": {
+        "collection": {
+          "name": "Kolleksjon",
+          "settings": {
+            "collection": {
+              "label": "Kolleksjon"
+            },
+            "image": {
+              "label": "Bilde",
+              "info": "Dersom du ønsker å legge til et egentilpasset bilde for kolleksjonen."
+            }
+          }
+        }
+      },
+      "settings": {
+        "header": {
+          "content": "Samlinger"
+        },
+        "layout": {
+          "label": "Layout",
+          "options__1": {
+            "label": "Én kolonne"
+          },
+          "options__2": {
+            "label": "To kolonner"
+          }
+        },
+        "paragraph": {
+          "content": "Alle kolleksjonene dine er listet opp som standard. For å tilpasse listen din: Velg \"Valgte\", og legg til kolleksjoner."
+        },
+        "display_type": {
+          "label": "Velg kolleksjonene som skal vises",
+          "options__1": {
+            "label": "Alle"
+          },
+          "options__2": {
+            "label": "Valgte"
+          }
+        },
+        "sort": {
+          "label": "Sorter kolleksjoner etter:",
+          "info": "Sortering gjelder kun når \"Alle\" er valgt",
+          "options__1": {
+            "label": "Alfabetisk, A-Å"
+          },
+          "options__2": {
+            "label": "Alfabetisk, Å-A"
+          },
+          "options__3": {
+            "label": "Dato, ny til gammel"
+          },
+          "options__4": {
+            "label": "Dato, gammel til ny"
+          },
+          "options__5": {
+            "label": "Produktantall, høyt til lavt"
+          },
+          "options__6": {
+            "label": "Produktantall, lavt til høyt"
+          }
+        }
+      }
+    },
+    "sidebar": {
+      "name": "Sidemeny",
+      "settings": {
+        "image": {
+          "label": "Logobilde"
+        },
+        "image_width": {
+          "label": "Bredde på logobilde"
+        },
+        "primary_navigation": {
+          "label": "Hovednavigasjon"
+        },
+        "secondary_navigation": {
+          "label": "Sekundær navigering"
+        },
+        "search": {
+          "content": "Søk",
+          "label": "Vis søk"
+        }
+      }
+    },
+    "text-columns-with-icons": {
+      "name": "Tekstkolonner med ikoner",
+      "settings": {
+        "content": {
+          "label": "Vis kun på valgte sider:"
+        },
+        "show_on_homepage": {
+          "label": "Hjemmeside"
+        },
+        "show_on_product": {
+          "label": "Produktsider"
+        },
+        "show_on_collection": {
+          "label": "Kolleksjonssider"
+        },
+        "show_on_blog": {
+          "label": "Blogg- og artikkelsider"
+        },
+        "show_on_regular": {
+          "label": "Vanlige sider"
+        },
+        "icons": {
+          "label": "Ikoner",
+          "info": "For å visualisere alle ikoner som er med i temaet: Vennligst besøk [denne lenken](https://krownthemes.com/krown-icons/)"
+        }
+      },
+      "blocks": {
+        "icon": {
+          "name": "Tekst med ikon",
+          "settings": {
+            "title": {
+              "label": "Overskrift"
+            },
+            "text": {
+              "label": "Tekst"
+            },
+            "icon": {
+              "label": "Velg et ikon"
+            }
+          }
+        }
+      }
+    },
+    "footer": {
+      "name": "Bunntekst",
+      "settings": {
+        "show_payment_icons": {
+          "label": "Vis betalingsikoner"
+        },
+        "language_selector": {
+          "content": "Språkvelger",
+          "info": "For å legge til et språk går du til [språkinnstillingene dine.](/admin/settings/languages)"
+        },
+        "language_selector_show": {
+          "label": "Vis språkvelger"
+        },
+        "country_selector": {
+          "content": "Land-/regionvelger",
+          "info": "Gå til [betalingsinnstillingene](/admin/settings/payments) for å legge til et land/region."
+        },
+        "country_selector_show": {
+          "label": "Vis land-/regionvelger"
+        }
+      },
+      "blocks": {
+        "text": {
+          "name": "Tekst",
+          "settings": {
+            "title": {
+              "label": "Overskrift"
+            },
+            "content": {
+              "label": "Innhold"
+            },
+            "text_size": {
+              "label": "Tekststørrelse",
+              "options__1": {
+                "label": "Vanlig"
+              },
+              "options__2": {
+                "label": "Stor"
+              }
+            }
+          }
+        },
+        "menus": {
+          "name": "Menyer",
+          "settings": {
+            "title_1": {
+              "label": "Overskrift for første meny"
+            },
+            "title_2": {
+              "label": "Overskrift for andre meny"
+            },
+            "menu_1": {
+              "label": "Første meny",
+              "info": "Denne menyen kommer ikke til å vise nedtrekkselementer"
+            },
+            "menu_2": {
+              "label": "Andre meny"
+            }
+          }
+        },
+        "newsletter": {
+          "name": "E-postregistrering"
+        },
+        "social": {
+          "name": "Sosiale lenker"
+        },
+        "image": {
+          "name": "Bilde",
+          "settings": {
+            "image": {
+              "label": "Velg bilde"
+            }
+          }
+        }
+      }
+    },
+    "contact-form": {
+      "name": "Kontaktskjema",
+      "settings": {
+        "title": {
+          "label": "Overskrift"
+        }
+      },
+      "blocks": {
+        "field": {
+          "name": "Skjemafelt",
+          "settings": {
+            "type": {
+              "label": "Type",
+              "options__1": {
+                "label": "Enkeltlinje"
+              },
+              "options__2": {
+                "label": "Flere linjer"
+              }
+            },
+            "required_field": {
+              "label": "Obligatorisk"
+            },
+            "labels": {
+              "label": "Merkelapp",
+              "info": "Forsikre deg om at alle feltene dine har unike merkelapper!"
+            }
+          }
+        },
+        "email": {
+          "name": "Navn og e-post"
+        },
+        "button": {
+          "name": "Send inn-knapp",
+          "settings": {
+            "label": {
+              "label": "Merkelapp"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Kontaktskjema"
+      }
+    },
+    "image-with-text": {
+      "name": "Bilder med tekst",
+      "blocks": {
+        "image": {
+          "name": "Bilde med tekst",
+          "settings": {
+            "title": {
+              "label": "Overskrift"
+            },
+            "body": {
+              "label": "Tekst"
+            },
+            "button_label": {
+              "label": "Merkelapp for knapp"
+            },
+            "url": {
+              "label": "Lenke",
+              "info": "Hele blokken vil bli omgjort til en lenke, med mindre det finnes en merkelapp for knappen"
+            },
+            "image": {
+              "label": "Bakgrunnsbilde"
+            }
+          }
+        }
+      },
+      "settings": {
+        "image_height": {
+          "label": "Bildehøyde",
+          "options__1": {
+            "label": "Liten"
+          },
+          "options__2": {
+            "label": "Middels"
+          },
+          "options__3": {
+            "label": "Stor"
+          },
+          "options__4": {
+            "label": "Full"
+          }
+        },
+        "text_width": {
+          "label": "Bredde på tekstboks",
+          "options__1": {
+            "label": "Middels"
+          },
+          "options__2": {
+            "label": "Stor"
+          },
+          "options__3": {
+            "label": "Full"
+          }
+        },
+        "text_size": {
+          "label": "Størrelse på overskrift",
+          "options__1": {
+            "label": "Vanlig"
+          },
+          "options__2": {
+            "label": "Stor"
+          },
+          "options__3": {
+            "label": "Ekstra stor"
+          }
+        },
+        "text_alignment": {
+          "label": "Tekstjustering",
+          "options__1": {
+            "label": "Venstre, øverst"
+          },
+          "options__2": {
+            "label": "Senter, øverst"
+          },
+          "options__3": {
+            "label": "Høyre, øverst"
+          },
+          "options__4": {
+            "label": "Venstre, midt på"
+          },
+          "options__5": {
+            "label": "Senter, midt på"
+          },
+          "options__6": {
+            "label": "Høyre, midt på"
+          },
+          "options__7": {
+            "label": "Venstre, bunn"
+          },
+          "options__8": {
+            "label": "Senter, bunn"
+          },
+          "options__9": {
+            "label": "Høyre, bunn"
+          }
+        }
+      },
+      "presets": {
+        "name": "Bilder med tekst"
+      }
+    },
+    "featured-product": {
+      "name": "Utvalgt produkt",
+      "settings": {
+        "product": {
+          "label": "Velg produkt"
+        }
+      },
+      "blocks": {
+        "product_link": {
+          "name": "Produktlenke"
+        }
+      }
+    },
+    "featured-collection": {
+      "name": "Utvalgt kolleksjon",
+      "settings": {
+        "title": {
+          "label": "Overskrift"
+        },
+        "show_view_all": {
+          "label": "Vis lenke til kolleksjonsside"
+        },
+        "layout": {
+          "label": "Layout",
+          "options__1": {
+            "label": "Glidebryter"
+          },
+          "options__2": {
+            "label": "Rutenett"
+          }
+        },
+        "products_number": {
+          "label": "Maksimalt antall produkter som vises"
+        },
+        "collection": {
+          "label": "Kolleksjon"
+        }
+      },
+      "presets": {
+        "name": "Utvalgt kolleksjon"
+      }
+    },
+    "gallery": {
+      "name": "Galleri",
+      "blocks": {
+        "image": {
+          "name": "Bilde",
+          "settings": {
+            "image": {
+              "label": "Bilde"
+            },
+            "caption": {
+              "label": "Bildetekst"
+            },
+            "featured": {
+              "label": "Forstørr bilde i rutenett"
+            }
+          }
+        }
+      },
+      "settings": {
+        "aspect_ratio": {
+          "label": "Sideforhold på bilder",
+          "options__1": {
+            "label": "Kort (4:3)",
+            "group": "Beskåret"
+          },
+          "options__2": {
+            "label": "Kvadratisk (1:1)"
+          },
+          "options__3": {
+            "label": "Høyt (5:6)"
+          },
+          "options__4": {
+            "label": "Høyere (2:3)"
+          },
+          "options__5": {
+            "label": "Naturlig",
+            "group": "Ubeskåret"
+          },
+          "info": "Når du bruker det naturlige sideforholdet: Husk å justere miniatyrbildene dine til samme størrelse, slik at rutenettet får et ryddig design. Ved bruk av én av beskjæringsinnstillingene vil størrelsen på alle miniatyrbildene bli justert til samme dimensjon."
+        },
+        "style_mobile": {
+          "label": "Gjør galleri om til en glidebryter på mobil"
+        },
+        "slider_height": {
+          "label": "Høyde på glidebryter for mobil",
+          "options__1": {
+            "label": "Middels"
+          },
+          "options__2": {
+            "label": "Stor"
+          },
+          "options__3": {
+            "label": "Full"
+          }
+        },
+        "lightbox": {
+          "label": "Aktiver displayboks",
+          "info": "Viser større bilde ved klikk"
+        }
+      },
+      "presets": {
+        "name": "Galleri"
+      }
+    },
+    "heading": {
+      "name": "Overskrift",
+      "settings": {
+        "title": {
+          "label": "Tittel"
+        }
+      },
+      "presets": {
+        "name": "Overskrift"
+      }
+    },
+    "image": {
+      "name": "Bilde"
+    },
+    "apps": {
+      "name": "Apper",
+      "settings": {
+        "include_margins": {
+          "label": "Gjør seksjonsmargene lik temaet"
+        }
+      },
+      "presets": {
+        "name": "Apper"
+      }
+    },
+    "rich-text": {
+      "name": "Rik tekst",
+      "blocks": {
+        "heading": {
+          "name": "Overskrift",
+          "settings": {
+            "heading": {
+              "label": "Overskrift"
+            },
+            "heading_size": {
+              "label": "Størrelse på overskrift",
+              "options__1": {
+                "label": "Vanlig"
+              },
+              "options__2": {
+                "label": "Stor"
+              },
+              "options__3": {
+                "label": "Ekstra stor"
+              }
+            }
+          }
+        },
+        "icon": {
+          "name": "Ikon"
+        },
+        "text": {
+          "name": "Tekst",
+          "settings": {
+            "text": {
+              "label": "Tekst"
+            }
+          }
+        },
+        "button": {
+          "name": "Knapp",
+          "settings": {
+            "button_label": {
+              "label": "Merkelapp for knapp"
+            },
+            "button_link": {
+              "label": "Knapplenke"
+            },
+            "button_size": {
+              "label": "Knappstørrelse",
+              "options__1": {
+                "label": "Vanlig"
+              },
+              "options__2": {
+                "label": "Stor"
+              }
+            }
+          }
+        }
+      },
+      "settings": {
+        "text_alignment": {
+          "label": "Tekstjustering",
+          "options__1": {
+            "label": "Venstre"
+          },
+          "options__2": {
+            "label": "Senter"
+          },
+          "options__3": {
+            "label": "Høyre"
+          }
+        },
+        "image": {
+          "label": "Bilde"
+        },
+        "image_position": {
+          "label": "Bildeposisjon",
+          "options__1": {
+            "label": "Venstre"
+          },
+          "options__2": {
+            "label": "Høyre"
+          }
+        },
+        "image_height": {
+          "label": "Bildehøyde",
+          "options__1": {
+            "label": "Vanlig"
+          },
+          "options__2": {
+            "label": "Stor"
+          },
+          "options__3": {
+            "label": "Full"
+          }
+        }
+      },
+      "presets": {
+        "name": "Rik tekst"
+      }
+    },
+    "shop-the-look": {
+      "name": "Shop looken",
+      "settings": {
+        "heading": {
+          "label": "Overskrift"
+        },
+        "subheading": {
+          "label": "Underoverskrift"
+        },
+        "image": {
+          "label": "Bakgrunnsbilde"
+        }
+      },
+      "blocks": {
+        "product": {
+          "name": "Produkt",
+          "settings": {
+            "select_product": {
+              "label": "Velg produkt"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Shop looken"
+      }
+    },
+    "testimonials": {
+      "name": "Kundekommentarer",
+      "blocks": {
+        "testimonial": {
+          "name": "Kundekommentar",
+          "settings": {
+            "quote": {
+              "label": "Sitat"
+            },
+            "author_name": {
+              "label": "Navn på forfatter"
+            },
+            "author_title": {
+              "label": "Forfattertittel"
+            },
+            "author_avatar": {
+              "label": "Avatar for forfatter"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Kundekommentarer"
+      }
+    },
+    "announcement-bar": {
+      "name": "Meldingslinje",
+      "settings": {
+        "bar_show": {
+          "label": "Vis meldingslinje"
+        },
+        "bar_show_on_homepage": {
+          "label": "Vis kun på hjemmesiden"
+        },
+        "bar_show_dismiss": {
+          "label": "Vis avvis-knappen"
+        },
+        "bar_message": {
+          "label": "Innhold"
+        },
+        "bar_link": {
+          "label": "Lenke"
+        },
+        "bar_bgcolor": {
+          "label": "Bakgrunnsfarge"
+        },
+        "bar_txtcolor": {
+          "label": "Tekstfarge"
+        }
+      }
+    },
+    "text-columns-with-images": {
+      "name": "Tekstkolonner med bilder",
+      "blocks": {
+        "text": {
+          "name": "Tekst",
+          "settings": {
+            "title": {
+              "label": "Overskrift"
+            },
+            "text": {
+              "label": "Tekst"
+            },
+            "image": {
+              "label": "Bilde"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Tekstkolonner med bilder"
+      }
+    },
+    "slider": {
+      "slider_horizontal": {
+        "name": "Lysbildevisning: horisontal"
+      },
+      "slider_vertical": {
+        "name": "Lysbildevisning: vertikal"
+      },
+      "settings": {
+        "desktop_height": {
+          "label": "Høyde på glidebryter for skrivebord",
+          "options__1": {
+            "label": "Liten"
+          },
+          "options__2": {
+            "label": "Middels"
+          },
+          "options__3": {
+            "label": "Stor"
+          },
+          "options__4": {
+            "label": "Full"
+          }
+        },
+        "mobile_height": {
+          "label": "Høyde på glidebryter for mobil"
+        },
+        "text_style": {
+          "header": "Tekststil"
+        },
+        "mobile_design": {
+          "header": "Mobildesign",
+          "label": "Gjør den vertikale glidebryteren horisontal på mobil"
+        }
+      },
+      "blocks": {
+        "image": {
+          "name": "Bilde",
+          "settings": {
+            "image": {
+              "label": "Bilde"
+            },
+            "heading": {
+              "label": "Overskrift"
+            },
+            "subheading": {
+              "label": "Underoverskrift"
+            },
+            "caption": {
+              "label": "Bildetekst"
+            },
+            "button_label": {
+              "label": "Merkelapp for knapp"
+            },
+            "link": {
+              "label": "Lenke",
+              "info": "Med mindre det finnes en merkelapp for knappen, vil lenken være på teksten."
+            }
+          }
+        }
+      }
+    },
+    "video-popup": {
+      "name": "Video: sprettoppvindu",
+      "settings": {
+        "video": {
+          "label": "URL til video"
+        },
+        "image": {
+          "label": "Bakgrunnsbilde"
+        }
+      }
+    },
+    "video-background": {
+      "name": "Video: bakgrunn (MP4)",
+      "settings": {
+        "video": {
+          "label": "URL til video",
+          "info": "Sti til en .mp4-fil"
+        },
+        "image": {
+          "label": "Reservebilde",
+          "info": "Reservebilde brukes på mobile enheter der automatisk avspilling kan være deaktivert."
+        },
+        "size_alignment": {
+          "content": "Størrelse og justering"
+        },
+        "video_height": {
+          "label": "Videohøyde",
+          "options__1": {
+            "label": "Naturlig (16:9)",
+            "group": "Ubeskåret"
+          },
+          "options__2": {
+            "label": "Stor",
+            "group": "Beskåret"
+          },
+          "options__3": {
+            "label": "Full"
+          }
+        }
+      }
+    },
+    "main-password-header": {
+      "name": "Passordoverskrift"
+    },
+    "main-password-content": {
+      "name": "Passordinnhold"
+    },
+    "main-password-footer": {
+      "name": "Bunntekst til passord",
+      "settings": {
+        "show_social": {
+          "label": "Vis sosiale ikoner"
+        }
+      }
+    },
+    "main-article": {
+      "name": "Blogginnlegg",
+      "blocks": {
+        "featured_image": {
+          "name": "Utvalgt bilde",
+          "settings": {
+            "image_height": {
+              "label": "Høyde på utvalgt bilde",
+              "options__1": {
+                "label": "Tilpass til bilde"
+              },
+              "options__2": {
+                "label": "Middels"
+              },
+              "options__3": {
+                "label": "Stor"
+              }
+            }
+          }
+        },
+        "title": {
+          "name": "Tittel",
+          "settings": {
+            "blog_show_date": {
+              "label": "Vis dato"
+            },
+            "blog_show_author": {
+              "label": "Vis forfatter"
+            },
+            "blog_show_comments": {
+              "label": "Vis kommentarnummer"
+            }
+          }
+        },
+        "content": {
+          "name": "Innhold"
+        },
+        "social_sharing": {
+          "name": "Knapper for deling på sosiale medier"
+        },
+        "blog_navigation": {
+          "name": "Vis lenker til innlegg før/etter"
+        }
+      }
+    },
+    "main-blog": {
+      "settings": {
+        "header": {
+          "content": "Blogginnleggkort"
+        },
+        "enable_tags": {
+          "label": "Aktiver fitrering etter stikkord"
+        },
+        "post_limit": {
+          "label": "Antall innlegg per side"
+        }
+      }
+    },
+    "blog-posts": {
+      "name": "Blogginnlegg",
+      "blocks": {
+        "title": {
+          "name": "Tittel"
+        },
+        "info": {
+          "name": "Info",
+          "settings": {
+            "show_date": {
+              "label": "Vis dato"
+            },
+            "show_author": {
+              "label": "Vis forfatter"
+            }
+          }
+        },
+        "summary": {
+          "name": "Utdrag"
+        },
+        "link": {
+          "name": "Lenke"
+        }
+      },
+      "settings": {
+        "title": {
+          "label": "Overskrift"
+        },
+        "blog": {
+          "label": "Blogg"
+        },
+        "post_limit": {
+          "label": "Innlegg"
+        },
+        "show_image": {
+          "label": "Vis utvalgt bilde"
+        },
+        "show_view_all": {
+          "label": "Vis lenke til bloggside"
+        },
+        "layout": {
+          "label": "Layout"
+        },
+        "option_1": {
+          "label": "En kolonne",
+          "group": "Rutenett"
+        },
+        "option_2": {
+          "label": "To kolonner"
+        },
+        "option_3": {
+          "label": "Fleksibelt (2-5 kolonner)",
+          "group": "Glidebryter"
+        }
+      },
+      "presets": {
+        "name": "Blogginnlegg"
+      }
+    },
+    "custom-colors": {
+      "heading": {
+        "label": "Overskrift"
+      },
+      "text": {
+        "label": "Egentilpasset tekstfarge"
+      },
+      "overlay": {
+        "label": "Farge på overleggsbilde"
+      },
+      "background": {
+        "label": "Egentilpasset bakgrunnsfarge"
+      }
+    },
+    "custom-gutter": {
+      "heading": {
+        "content": "Mellomrom mellom kolonner"
+      },
+      "gutter_enabled": {
+        "label": "Aktiver innvendige mellomrom i innhold"
+      }
+    },
+    "newsletter": {
+      "name": "E-postregistrering",
+      "blocks": {
+        "heading": {
+          "name": "Overskrift",
+          "settings": {
+            "heading": {
+              "label": "Overskrift"
+            }
+          }
+        },
+        "paragraph": {
+          "name": "Underoverskrift",
+          "settings": {
+            "paragraph": {
+              "label": "Beskrivelse"
+            }
+          }
+        },
+        "email_form": {
+          "name": "E-postskjema"
+        }
+      },
+      "presets": {
+        "name": "E-postregistrering"
+      }
+    },
+    "product-recommendations": {
+      "name": "Produktanbefalinger",
+      "settings": {
+        "heading": {
+          "label": "Overskrift"
+        },
+        "header__1": {
+          "content": "Produktanbefalinger",
+          "info": "Dynamiske anbefalinger bruker rekkefølge og produktinformasjon til å skape endring og forbedringer over tid. [Finn ut mer] (https://help.shopify.com/en/themes/development/recommended-products)"
+        }
+      }
+    },
+    "custom-liquid": {
+      "name": "Egentilpasset væske",
+      "settings": {
+        "custom_liquid": {
+          "label": "Egentilpasset væske"
+        }
+      },
+      "presets": {
+        "name": "Egentilpasset væske"
+      }
+    },
+    "collection-list": {
+      "name": "Kolleksjonsliste",
+      "presets": {
+        "name": "Kolleksjonsliste"
+      }
+    },
+    "faq": {
+      "name": "Ofte stilte spørsmål",
+      "settings": {
+        "title": {
+          "label": "Overskrift"
+        },
+        "open_first": {
+          "label": "Ha den første skiftebryteren åpnet som standard"
+        }
+      },
+      "blocks": {
+        "text": {
+          "name": "Ofte stilte spørsmål",
+          "settings": {
+            "title": {
+              "label": "Tittel"
+            },
+            "text": {
+              "label": "Tekst"
+            },
+            "image": {
+              "label": "Bilde"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Ofte stilte spørsmål"
+      }
+    },
+    "popup": {
+      "name": "Sprettoppvindu",
+      "settings": {
+        "title": {
+          "label": "Overskrift"
+        },
+        "content": {
+          "label": "Innhold"
+        },
+        "show_newsletter": {
+          "label": "Vis epost-registreringsskjema"
+        },
+        "functionality": {
+          "content": "Funksjonalitet"
+        },
+        "enable": {
+          "label": "Aktiver sprettoppvindu"
+        },
+        "show_after": {
+          "label": "Vis sprettoppvindu etter",
+          "info": "sek"
+        },
+        "frequency": {
+          "label": "Frekvens for sprettoppvinduer",
+          "options__1": {
+            "label": "Vis hver dag"
+          },
+          "options__2": {
+            "label": "Vis hver uke"
+          },
+          "options__3": {
+            "label": "Vis hver måned"
+          }
+        },
+        "image": {
+          "label": "Bilde",
+          "info": "1240 x 400px .jpg anbefales. Det vises kun på skrivebordet"
+        }
+      }
+    },
+    "main-search": {
+      "name": "Søk i resultater",
+      "settings": {
+        "products_per_page": {
+          "label": "Resultater per side"
+        }
+      }
+    },
+    "main-collection-product-grid": {
+      "name": "Produkt-boksvisning",
+      "settings": {
+        "products_per_page": {
+          "label": "Produkter per side"
+        },
+        "enable_filtering": {
+          "label": "Aktiver filtrering",
+          "info": "[Tilpass filtre](/admin/menus)"
+        },
+        "enable_sorting": {
+          "label": "Aktiver sortering"
+        },
+        "header__1": {
+          "content": "Filtrering og sortering"
+        }
+      }
+    },
+    "main-collection-banner": {
+      "name": "Banner for kolleksjon",
+      "settings": {
+        "paragraph": {
+          "content": "For å endre kolleksjonsbeskrivelser eller kolleksjonsbilder, [edit your collections.](/admin/collections)"
+        },
+        "show_collection_description": {
+          "label": "Vis kolleksjonsbeskrivelse"
+        },
+        "show_collection_image": {
+          "label": "Vis kolleksjonsbilde",
+          "info": "Bruk et bilde med sideforhold på 16:9 for beste resultat."
+        }
+      }
+    },
+    "main-product": {
+      "name": "Produktinformasjon",
+      "blocks": {
+        "text": {
+          "name": "Tekst",
+          "settings": {
+            "text": {
+              "label": "Tekst"
+            },
+            "text_style": {
+              "label": "Tekststil",
+              "options__1": {
+                "label": "Hovedfelt"
+              },
+              "options__2": {
+                "label": "Undertittel"
+              },
+              "options__3": {
+                "label": "Store bokstaver"
+              }
+            }
+          }
+        },
+        "title": {
+          "name": "Tittel"
+        },
+        "price": {
+          "name": "Pris"
+        },
+        "tax_info": {
+          "name": "Avgiftsinformasjon"
+        },
+        "sku_barcode": {
+          "name": "LAGERENHET/STREKKODE"
+        },
+        "quantity_selector": {
+          "name": "Velger for antall"
+        },
+        "variant_picker": {
+          "name": "Variantvelger",
+          "settings": {
+            "show_variant_labels": {
+              "label": "Vis variant-merkelapper"
+            },
+            "hide_out_of_stock_variants": {
+              "label": "Skjul varianter som ikke er på lager"
+            },
+            "low_inventory_notification": {
+              "label": "Varsel om lagerbeholdning",
+              "info": "Varianter må ha sporing av lagerstatus aktivert for at denne funksjonen skal virke. [Finn ut mer](https://help.shopify.com/en/manual/products/inventory/track_inventory)",
+              "options__1": {
+                "label": "Ikke vis informasjon om lagerbeholdning"
+              },
+              "options__2": {
+                "label": "Vis en merknad dersom det er mindre enn 5 enheter på lager"
+              },
+              "options__3": {
+                "label": "Vis alltid lagerbeholdning"
+              }
+            }
+          }
+        },
+        "buy_buttons": {
+          "name": "Kjøp-knapper",
+          "settings": {
+            "show_dynamic_checkout": {
+              "label": "Vis dynamiske kasseområde-knapper",
+              "info": "Ved bruk av betalingsmetodene som er tilgjengelige i butikken din ser kundene alternativet de foretrekker, som PayPal eller Apple Pay. [Finn ut mer](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+            },
+            "show_quantity_selector": {
+              "label": "Vis velger for antall"
+            }
+          }
+        },
+        "pickup_availability": {
+          "name": "Mulighet for henting"
+        },
+        "description": {
+          "name": "Beskrivelse",
+          "settings": {
+            "product_description_truncated": {
+              "label": "Trunkér beskrivelse",
+              "info": "Trunkér",
+              "options__1": {
+                "label": "Ikke trunkér"
+              },
+              "options__2": {
+                "label": "Vis et lite utdrag"
+              },
+              "options__3": {
+                "label": "Vis et middels stort utdrag"
+              },
+              "options__4": {
+                "label": "Vis et stort utdrag"
+              }
+            }
+          }
+        },
+        "share": {
+          "name": "Del",
+          "settings": {
+            "featured_image_info": {
+              "content": "Dersom du legger til en lenke i innlegg på sosiale medier, vil det utvalgte bildet på siden bli vist som forhåndsvisningsbilde. [Finn ut mer](https://help.shopify.com/en/manual/online-store/images/showing-social-media-thumbnail-images)."
+            },
+            "title_info": {
+              "content": "Det følger med en butikktittel og beskrivelse til forhåndsvisningsbildet. [Finn ut mer](https://help.shopify.com/en/manual/promoting-marketing/seo/adding-keywords#set-a-title-and-description-for-your-online-store)."
+            }
+          }
+        },
+        "collapsible_tab": {
+          "name": "Sammenfoldbar fane",
+          "settings": {
+            "heading": {
+              "info": "Ta med en overskrift som forklarer innholdet.",
+              "label": "Overskrift"
+            },
+            "content": {
+              "label": "Faneinnhold"
+            },
+            "page": {
+              "label": "Faneinnhold fra side"
+            },
+            "image": {
+              "label": "Fanebilde"
+            }
+          }
+        }
+      },
+      "settings": {
+        "header": {
+          "content": "medier",
+          "info": "Lær mer om [medietyper] (https://help.shopify.com/manual/products/product-media)"
+        },
+        "enable_sticky_info": {
+          "label": "Aktiver fastvisning av produktinformasjon på store skjermer"
+        },
+        "enable_video_looping": {
+          "label": "Aktiver kjøring av videoer i sløyfe"
+        },
+        "enable_zoom": {
+          "label": "Aktiver bildezooming"
+        },
+        "gallery_gutter": {
+          "label": "Legg til mellomrom mellom medier"
+        },
+        "gallery_slider_style": {
+          "label": "Skaler skyvebilder for å passe visningsporten"
+        },
+        "gallery_style": {
+          "label": "Gallleristil",
+          "info": "Bruker glidebryter som standard på mobile enheter",
+          "options__1": {
+            "label": "Rull"
+          },
+          "options__2": {
+            "label": "Glidebryter"
+          }
+        },
+        "gallery_pagination": {
+          "label": "Sidemerking for galleri",
+          "options__1": {
+            "label": "Prikker"
+          },
+          "options__2": {
+            "label": "Miniatyrbilder"
+          }
+        }
+      }
+    }
+  }
+}

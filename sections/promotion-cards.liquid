@@ -20,20 +20,33 @@
     position: relative;
   }
 
-  /* Visible but subtle scrollbar */
-  .promo-cards-scroll::-webkit-scrollbar {
-    height: 6px;
-  }
+  /* ==========================================================
+   Branded Scrollbar (Table Top Warfare Style)
+   ========================================================== */
 
-  .promo-cards-scroll::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.08);
-    border-radius: 10px;
-  }
+.promo-cards-scroll::-webkit-scrollbar {
+  height: 4px;
+}
 
-  .promo-cards-scroll::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.35);
-    border-radius: 10px;
-  }
+.promo-cards-scroll::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+
+.promo-cards-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    #e8510e,
+    #1f1f1f
+  );
+  border-radius: 10px;
+}
+
+/* Firefox */
+.promo-cards-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #e8510e rgba(255,255,255,0.08);
+}
 
   /* Firefox */
   .promo-cards-scroll {

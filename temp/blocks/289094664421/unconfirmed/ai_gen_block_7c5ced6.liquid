@@ -1,6 +1,654 @@
+{% doc %}
+  @prompt
+    Create a promotion cards section that mirrors the standard Shopify promotion cards functionality. It should be a section that contains multiple card blocks. Each card block should have settings for image, heading, description, button text, and button link. The section should have settings for columns per row, spacing, colors, and alignment. Add a new setting called "Mobile layout" with options for "Stack vertically" or "Scroll horizontally". When horizontal scroll is selected, cards should scroll sideways on mobile and tablet screen sizes instead of stacking. Use CSS overflow-x scroll with smooth scrolling behavior for the horizontal layout.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-promo-cards-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.section_padding }}px 0;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-promo-cards__container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-promo-cards__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.card_spacing }}px;
+  }
+
+  .ai-promo-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-promo-card__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ai-promo-card__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-promo-card__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-promo-card__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .ai-promo-card__content-{{ ai_gen_id }} {
+    padding: {{ block.settings.card_padding }}px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-promo-card__heading-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    line-height: 1.2;
+  }
+
+  .ai-promo-card__description-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+
+  .ai-promo-card__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    {% if block.settings.text_alignment == 'center' %}
+      margin: 0 auto;
+    {% elsif block.settings.text_alignment == 'right' %}
+      margin-left: auto;
+    {% endif %}
+  }
+
+  .ai-promo-card__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-promo-cards__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    {% if block.settings.mobile_layout == 'stack' %}
+      .ai-promo-cards__grid-{{ ai_gen_id }} {
+        grid-template-columns: 1fr;
+      }
+    {% else %}
+      .ai-promo-cards__grid-{{ ai_gen_id }} {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        gap: {{ block.settings.card_spacing }}px;
+        padding-bottom: 10px;
+      }
+
+      .ai-promo-cards__grid-{{ ai_gen_id }}::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .ai-promo-cards__grid-{{ ai_gen_id }}::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      .ai-promo-cards__grid-{{ ai_gen_id }}::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+
+      .ai-promo-cards__grid-{{ ai_gen_id }}::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .ai-promo-card-{{ ai_gen_id }} {
+        min-width: 280px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+      }
+    {% endif %}
+  }
+{% endstyle %}
+
+<div class="ai-promo-cards-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-promo-cards__container-{{ ai_gen_id }}">
+    <div class="ai-promo-cards__grid-{{ ai_gen_id }}">
+      {% if block.settings.card_1_enabled %}
+        <div class="ai-promo-card-{{ ai_gen_id }}">
+          <div class="ai-promo-card__image-wrapper-{{ ai_gen_id }}">
+            {% if block.settings.card_1_image %}
+              <img
+                src="{{ block.settings.card_1_image | image_url: width: 800 }}"
+                alt="{{ block.settings.card_1_image.alt | escape }}"
+                class="ai-promo-card__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.card_1_image.width }}"
+                height="{{ block.settings.card_1_image.height }}"
+              >
+            {% else %}
+              <div class="ai-promo-card__image-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ai-promo-card__content-{{ ai_gen_id }}">
+            {% if block.settings.card_1_heading != blank %}
+              <h3 class="ai-promo-card__heading-{{ ai_gen_id }}">{{ block.settings.card_1_heading }}</h3>
+            {% endif %}
+            {% if block.settings.card_1_description != blank %}
+              <p class="ai-promo-card__description-{{ ai_gen_id }}">{{ block.settings.card_1_description }}</p>
+            {% endif %}
+            {% if block.settings.card_1_button_text != blank %}
+              <a
+                href="{{ block.settings.card_1_button_link }}"
+                class="ai-promo-card__button-{{ ai_gen_id }}"
+              >
+                {{ block.settings.card_1_button_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.card_2_enabled %}
+        <div class="ai-promo-card-{{ ai_gen_id }}">
+          <div class="ai-promo-card__image-wrapper-{{ ai_gen_id }}">
+            {% if block.settings.card_2_image %}
+              <img
+                src="{{ block.settings.card_2_image | image_url: width: 800 }}"
+                alt="{{ block.settings.card_2_image.alt | escape }}"
+                class="ai-promo-card__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.card_2_image.width }}"
+                height="{{ block.settings.card_2_image.height }}"
+              >
+            {% else %}
+              <div class="ai-promo-card__image-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ai-promo-card__content-{{ ai_gen_id }}">
+            {% if block.settings.card_2_heading != blank %}
+              <h3 class="ai-promo-card__heading-{{ ai_gen_id }}">{{ block.settings.card_2_heading }}</h3>
+            {% endif %}
+            {% if block.settings.card_2_description != blank %}
+              <p class="ai-promo-card__description-{{ ai_gen_id }}">{{ block.settings.card_2_description }}</p>
+            {% endif %}
+            {% if block.settings.card_2_button_text != blank %}
+              <a
+                href="{{ block.settings.card_2_button_link }}"
+                class="ai-promo-card__button-{{ ai_gen_id }}"
+              >
+                {{ block.settings.card_2_button_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.card_3_enabled %}
+        <div class="ai-promo-card-{{ ai_gen_id }}">
+          <div class="ai-promo-card__image-wrapper-{{ ai_gen_id }}">
+            {% if block.settings.card_3_image %}
+              <img
+                src="{{ block.settings.card_3_image | image_url: width: 800 }}"
+                alt="{{ block.settings.card_3_image.alt | escape }}"
+                class="ai-promo-card__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.card_3_image.width }}"
+                height="{{ block.settings.card_3_image.height }}"
+              >
+            {% else %}
+              <div class="ai-promo-card__image-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ai-promo-card__content-{{ ai_gen_id }}">
+            {% if block.settings.card_3_heading != blank %}
+              <h3 class="ai-promo-card__heading-{{ ai_gen_id }}">{{ block.settings.card_3_heading }}</h3>
+            {% endif %}
+            {% if block.settings.card_3_description != blank %}
+              <p class="ai-promo-card__description-{{ ai_gen_id }}">{{ block.settings.card_3_description }}</p>
+            {% endif %}
+            {% if block.settings.card_3_button_text != blank %}
+              <a
+                href="{{ block.settings.card_3_button_link }}"
+                class="ai-promo-card__button-{{ ai_gen_id }}"
+              >
+                {{ block.settings.card_3_button_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.card_4_enabled %}
+        <div class="ai-promo-card-{{ ai_gen_id }}">
+          <div class="ai-promo-card__image-wrapper-{{ ai_gen_id }}">
+            {% if block.settings.card_4_image %}
+              <img
+                src="{{ block.settings.card_4_image | image_url: width: 800 }}"
+                alt="{{ block.settings.card_4_image.alt | escape }}"
+                class="ai-promo-card__image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.card_4_image.width }}"
+                height="{{ block.settings.card_4_image.height }}"
+              >
+            {% else %}
+              <div class="ai-promo-card__image-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ai-promo-card__content-{{ ai_gen_id }}">
+            {% if block.settings.card_4_heading != blank %}
+              <h3 class="ai-promo-card__heading-{{ ai_gen_id }}">{{ block.settings.card_4_heading }}</h3>
+            {% endif %}
+            {% if block.settings.card_4_description != blank %}
+              <p class="ai-promo-card__description-{{ ai_gen_id }}">{{ block.settings.card_4_description }}</p>
+            {% endif %}
+            {% if block.settings.card_4_button_text != blank %}
+              <a
+                href="{{ block.settings.card_4_button_link }}"
+                class="ai-promo-card__button-{{ ai_gen_id }}"
+              >
+                {{ block.settings.card_4_button_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Promotion cards",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Columns on tablet",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        {
+          "value": "stack",
+          "label": "Stack vertically"
+        },
+        {
+          "value": "scroll",
+          "label": "Scroll horizontally"
+        }
+      ],
+      "default": "stack"
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "label": "Card spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#e9510e"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#d14809"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Card padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_1_enabled",
+      "label": "Enable card 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_1_heading",
+      "label": "Heading",
+      "default": "Promotion 1"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_description",
+      "label": "Description",
+      "default": "Share details about your promotion here."
+    },
+    {
+      "type": "text",
+      "id": "card_1_button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "card_1_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_2_enabled",
+      "label": "Enable card 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_2_heading",
+      "label": "Heading",
+      "default": "Promotion 2"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_description",
+      "label": "Description",
+      "default": "Share details about your promotion here."
+    },
+    {
+      "type": "text",
+      "id": "card_2_button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "card_2_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_3_enabled",
+      "label": "Enable card 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_3_heading",
+      "label": "Heading",
+      "default": "Promotion 3"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_description",
+      "label": "Description",
+      "default": "Share details about your promotion here."
+    },
+    {
+      "type": "text",
+      "id": "card_3_button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "card_3_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_4_enabled",
+      "label": "Enable card 4",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_4_heading",
+      "label": "Heading",
+      "default": "Promotion 4"
+    },
+    {
+      "type": "textarea",
+      "id": "card_4_description",
+      "label": "Description",
+      "default": "Share details about your promotion here."
+    },
+    {
+      "type": "text",
+      "id": "card_4_button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "card_4_button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotion cards"
+    }
+  ]
+}
 {% endschema %}

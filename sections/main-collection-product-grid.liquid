@@ -1,0 +1,297 @@
+{{ 'component-product-item.css' | asset_url | stylesheet_tag }}
+
+<div class="container--large">
+  {%- liquid
+    if section.settings.enable_filtering or section.settings.enable_sorting
+      render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting
+    endif
+  -%}
+</div>
+
+<div id="CollectionProductGrid">
+  
+  {%- paginate collection.products by section.settings.products_number -%}
+    
+    <div class="container--large">
+
+      <div id="main-collection-product-grid" data-id="{{ section.id }}" class="collection grid grid--layout 
+        {% unless collection.products.size == 0 %} {{ section.settings.layout }} {% endunless %}
+      ">
+
+        {%- for product in collection.products -%}
+          {%- liquid
+              if forloop.index < 3
+                assign preload = true
+              else 
+                assign preload = false
+              endif
+              render 'product-item', product: product, section_blocks: section.blocks, index: forloop.index, layout: section.settings.layout, preload: preload
+          -%}
+        {%- else -%}
+          {%- if collection.filters != empty -%}
+            {%- liquid
+              assign sort_by = collection.sort_by | default: collection.default_sort_by
+              assign terms = collection.terms | escape
+              if collection.current_vendor
+                assign terms = collection.current_vendor | escape
+              endif
+              assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+            -%}
+              <p class="no-content-message rte">
+                {{ 'collections.empty' | t }}<br/>
+                {{ 'collections.use_fewer_filters_html' | t: link: results_url, class: 'button--text' }}
+              </p>
+          {%- else %}
+            <p class="no-content-message">
+              {{ 'products.grid.no_products_text' | t }}
+            </p>
+          {%- endif -%}
+        {%- endfor -%}
+
+      </div>
+
+      {%- liquid
+        if paginate.pages > 1
+          render 'pagination', paginate: paginate
+        endif
+      -%}
+
+    </div>
+
+  {%- endpaginate -%}
+
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.main-collection-product-grid.name",
+    "class": "container--vertical-space container--remove-margin-before",
+    "blocks": [
+      {
+        "type": "price",
+        "name": "t:sections.local-extra-words.sections.product-card.blocks.price",
+        "limit": 1
+      },
+      {
+        "type": "title",
+        "name": "t:sections.local-extra-words.sections.product-card.blocks.title",
+        "limit": 1
+      },
+      {
+        "type": "quick_buy",
+        "name": "t:sections.local-extra-words.sections.product-card.blocks.quick_buy",
+        "limit": 1
+      },
+      {
+        "type": "vendor",
+        "name": "t:sections.local-extra-words.sections.product-card.blocks.vendor",
+        "limit": 1
+      },
+      {
+        "type": "rating",
+        "name": "t:sections.local-extra-words.sections.product-card.blocks.rating",
+        "limit": 1
+      },
+      {
+        "type": "local_availability",
+        "name": "t:sections.local-extra-words.settings_schema.product-card.local-pickup.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "t:sections.local-extra-words.settings_schema.product-card.local-pickup.info"
+          }
+        ]
+      },
+      {
+        "type": "icons",
+        "name": "t:sections.local-extra-words.sections.main-product.blocks.icons.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "t:sections.local-extra-words.sections.main-product.blocks.icons.help"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "t:sections.local-extra-words.sections.product-card.blocks.text.name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "metafield",
+            "label": "t:sections.local-extra-words.sections.product-card.blocks.text.settings.text.label",
+            "info": "t:sections.local-extra-words.sections.product-card.blocks.text.info",
+            "info": "custom.product_text"
+          },
+          {
+            "type": "select",
+            "id": "text_size",
+            "label": "t:sections.local-extra-words.sections.product-card.blocks.text.settings.size.label",
+            "options": [
+              {
+                "value": "text-size--xsmall",
+                "label": "t:sections.local-extra-words.sections.product-card.blocks.text.settings.size.option__1"
+              },
+              {
+                "value": "text-size--regular",
+                "label": "t:sections.local-extra-words.sections.product-card.blocks.text.settings.size.option__2"
+              },
+              {
+                "value": "text-size--large",
+                "label": "t:sections.local-extra-words.sections.product-card.blocks.text.settings.size.option__3"
+              }
+            ],
+            "default": "text-size--regular"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "t:sections.local-extra-words.sections.product-card.blocks.text.settings.color.label",
+            "default": "#6A6A6A"
+          },
+          {
+            "type": "checkbox",
+            "id": "text_transform",
+            "label": "t:sections.local-extra-words.sections.product-card.blocks.text.settings.transform.label",
+            "default": false
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "t:sections.local-extra-words.sections.columns.name",
+        "info": "t:sections.local-extra-words.sections.columns.info",
+        "options": [
+          {
+            "value": "grid-3 grid-lap-2 grid-tiny-1",
+            "label": "t:sections.local-extra-words.sections.columns.option__2"
+          },
+          {
+            "value": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+            "label": "t:sections.local-extra-words.sections.columns.option__3"
+          }
+        ],
+        "default": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1"
+      },
+      {
+        "type": "range",
+        "id": "products_number",
+        "label": "t:sections.main-collection-product-grid.settings.products_per_page.label",
+        "min": 12,
+        "max": 64,
+        "step": 4,
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+      },
+      {
+        "id": "enable_filtering",
+        "type": "checkbox",
+        "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+        "default": true,
+        "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+      },
+      {
+        "id": "enable_sorting",
+        "type": "checkbox",
+        "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if we are on the "Pre-Orders" collection
+  var collectionTitleElement = document.querySelector('.h2');
+  var isPreOrdersCollection = collectionTitleElement && collectionTitleElement.textContent.trim() === 'Pre-Orders';
+  
+  // If not "Pre-Orders", do nothing
+  if (!isPreOrdersCollection) return
+  
+  // Select all product items
+  var products = document.querySelectorAll('.product-item');
+  console.log("Queried prouct items")
+  var today = new Date().setHours(0,0,0,0); // Today's date (in milliseconds, stripped of time)
+  
+  var visibleCount = 0;
+  
+  products.forEach(function(product) {
+    var tags = product.getAttribute('data-tags') || '';
+    var releaseDateStr = product.getAttribute('data-release-date');
+    var delayedReleaseDateStr = product.getAttribute('data-delayed-release-date');
+    console.log(tags);
+    
+    // Convert date strings to timestamps if they exist and are valid
+    var releaseDate = releaseDateStr ? Date.parse(releaseDateStr) : null;
+    var delayedReleaseDate = delayedReleaseDateStr ? Date.parse(delayedReleaseDateStr) : null;
+
+    // Check if product has any PREORDER-related tags
+    var hasPreorderTags = tags.includes('PREORDER') ||
+                          tags.includes('PREORDER-TBA') ||
+                          tags.includes('PREORDER-DELAYED') ||
+                          tags.includes('PREORDER-MONTH');
+
+    if (!hasPreorderTags) {
+      // Hide product if no preorder-related tags
+      product.style.display = 'none';
+      return;
+    }
+
+    // Determine deciding_date based on presence of delayedReleaseDate
+    var decidingDate;
+    if (delayedReleaseDate && releaseDate) {
+      // If release_date > delayed_release_date, deciding_date = release_date, else deciding_date = delayed_release_date
+      if (releaseDate > delayedReleaseDate) {
+        decidingDate = releaseDate;
+      } else {
+        decidingDate = delayedReleaseDate;
+      }
+    } else if (releaseDate) {
+      decidingDate = releaseDate;
+    } else if (delayedReleaseDate) {
+      decidingDate = delayedReleaseDate;
+    } else {
+      // No valid date found, hide product
+      product.style.display = 'none';
+      return;
+    }
+
+    // Compare decidingDate with today
+    if (decidingDate < today) {
+      // If deciding_date is in the past, hide product
+      product.style.display = 'none';
+    } else {
+      // Product passes all conditions
+      visibleCount++;
+    }
+  });
+
+  // If no products are visible after filtering, display a "no products" message
+  if (visibleCount === 0) {
+    // Hide the product grid if needed
+    var mainGrid = document.getElementById('main-collection-product-grid');
+    if (mainGrid) {
+      mainGrid.style.display = 'none';
+    }
+
+    // Show a "no products" message
+    // You can customize this message or select an existing no-content-message element
+    var noProductsMessage = document.createElement('p');
+    noProductsMessage.className = 'no-content-message';
+    noProductsMessage.textContent = "No products found matching the criteria.";
+    var container = document.querySelector('#CollectionProductGrid .container--large');
+    if (container) {
+      container.appendChild(noProductsMessage);
+    }
+  }
+});
+</script>

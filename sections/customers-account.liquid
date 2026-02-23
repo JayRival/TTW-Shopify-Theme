@@ -1,0 +1,291 @@
+{{ 'section-account.css' | asset_url | stylesheet_tag }}
+
+<div class="container--large container--vertical-space">
+  <div class="account-header">
+    <div class="account-header-left">
+      <h1 class="h2 gutter-bottom--small">{{ 'customers.account_page.title' | t }}</h1>
+      {% if shop.customer_accounts_enabled and customer %}
+        <a class="button button--outline button--small" href="{{ routes.account_logout_url }}">
+        {{ 'customers.login_page.form_logout_button' | t }}
+        </a>
+      {% endif %}    
+    </div>
+
+  <div class="loyalty-header-box">
+    <div class="loyalty-content-row">
+      <img src="https://cdn.shopify.com/s/files/1/0669/4833/3878/files/loyalty_card.png?v=1750676294" height=auto alt="Loyalty Card" class="loyalty-card-image" />
+      <div class="loyalty-details">
+        <div id="loyalty-credit-widget" class="account-widget" data-email="{{ customer.email }}" data-customer-id="{{ customer.id }}">
+        <div class="account-widget__head">
+          <span style="display: inline-flex; align-items: center;">
+            Loyalty Credit
+            </span>
+        </div>
+        <div class="account-widget__body">
+          <span class="alert alert--note alert--circle alert--circle-loading alert--unstyled">
+            <p><strong>Loading your loyalty balance...</strong></p>
+          </span>
+        </div>
+      </div>
+        
+      </div>
+    </div>
+    <div class="wallet-buttons">
+      {% if customer and customer.email == "spargo.jayden@gmail.com"%}
+        {% render 'wallet-pass-buttons' %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  <div class="account-layout gutter-top--large">
+    <main class="gutter-bottom--small">
+      <h2 class="h5 gutter-bottom--small">{{ 'customers.account_page.subtitle' | t }}</h2>
+
+      <!-- DESKTOP PAGINATED TABLE -->
+      <div class="account-table desktop-only">
+        {% paginate customer.orders by 10 %}
+          {% if customer.orders.size > 0 %}
+            <div class="thead">
+              <div class="tr orders">
+                <span class="th">{{ 'customers.account_page.orders_table.order' | t }}</span>
+                <span class="th">{{ 'customers.account_page.orders_table.date' | t }}</span>
+                <span class="th">{{ 'customers.account_page.orders_table.payment_status' | t }}</span>
+                <span class="th">{{ 'customers.account_page.orders_table.fulfillment_status' | t }}</span>
+                <span class="th">{{ 'customers.account_page.orders_table.total' | t }}</span>
+              </div>
+            </div>
+            <div class="tbody">
+              {% for order in customer.orders %}
+                {% render 'account-order-row', order: order %}
+              {% endfor %}
+            </div>
+        </div>
+      <div class="desktop-only">
+            {% if paginate.pages > 1 %}
+              {% render 'pagination', paginate: paginate %}
+            {% endif %}
+          {% else %}
+            <p>{{ 'customers.account_page.no_orders_message' | t }}</p>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+
+      <!-- MOBILE SLIDER ALL ORDERS -->
+      <div class="account-table mobile-only">
+        {% if customer.orders.size > 0 %}
+          <div class="orders-slider-wrapper">
+            <div class="orders-slider">
+              {% for order in customer.orders %}
+                {% render 'account-order-row', order: order %}
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <p>{{ 'customers.account_page.no_orders_message' | t }}</p>
+        {% endif %}
+      </div>
+    <!-- ========== IN-STORE ORDERS ========== -->
+  <h3 class="h5 gutter-top--large gutter-bottom--xsmall">In-Store Order History</h3>
+
+  <!-- Desktop in-store (replace with actual in-store order logic later) -->
+  <!-- Desktop in-store -->
+<div data-rex-orders>
+  <div class="account-table desktop-only">
+    <div class="thead">
+      <div class="tr orders">
+        <span class="th">Order</span>
+        <span class="th">Date</span>
+        <span class="th">Location</span>
+        <span class="th">Payment Status</span>
+        <span class="th">Total</span>
+      </div>
+    </div>
+    <div class="tbody">
+      <!-- This will be filled by JS -->
+      <span class="alert alert--note alert--circle alert--circle-loading alert--unstyled loading-orders-note">Loading your in-store orders.</span>
+    </div>
+  </div>
+
+  <!-- Mobile in-store -->
+  <div class="account-table mobile-only">
+    <div class="orders-slider-wrapper">
+      <div class="orders-slider">
+        <!-- This will be filled by JS -->
+        <span class="alert alert--note alert--circle alert--circle-loading alert--unstyled loading-orders-note">Loading your in-store orders.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+    <aside>
+            <h2 class="h5 gutter-bottom--small">Customer Details</h2>
+			<h2 class="h5 gutter-bottom--small">{{ 'customers.account_page.account_details_subtitle' | t }}</h2>
+
+			<div class="account-widget">
+
+				<div class="account-widget__head">
+					<span>{{ customer.name }}</span>
+				</div>
+
+				<div class="account-widget__body">
+					
+					{{ customer.default_address | format_address }}
+	
+					<p><a class="text-link" href="{{ routes.account_addresses_url }}">{{ 'customers.account_page.view_addresses_link' | t }} ({{ customer.addresses_count }})</a></p>
+				</div>
+
+			</div>			
+		</aside>
+		
+	</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const widget = document.getElementById('loyalty-credit-widget');
+  if (!widget) return;
+  
+  const email = widget.dataset.email;
+  const customerId = widget.dataset.customerId;
+  
+  if (!email || !customerId) {
+    widget.querySelector('.account-widget__body').innerHTML = '<span class="alert alert--error alert--unstyled"><p>Could not load loyalty balance.</p></span>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://rex-api.jayden-e91.workers.dev/customer-loyalty?email=${encodeURIComponent(email)}&shopify_customer_id=${encodeURIComponent(customerId)}`);
+    if (!res.ok) throw new Error('Request failed');
+
+    const data = await res.json();
+    const pointsRaw = data?.points_available ?? 0;
+    const pointsFormatted = Number(pointsRaw).toFixed(2);
+
+    let html = `
+      <span class="alert alert--success alert--circle alert--unstyled">
+        <p>You have <strong>$${pointsFormatted}</strong> to spend in store.</p>
+      </span>
+    `;
+
+    if (pointsRaw <= 0) {
+      html += `<p class="text-size--small">Make a purchase in-stores or online to begin earning loyalty points with every dollar spent!</p>`;
+    }
+
+    widget.querySelector('.account-widget__body').innerHTML = html;
+  } catch (err) {
+    console.error('Loyalty widget error:', err);
+    widget.querySelector('.account-widget__body').innerHTML = '<span class="alert alert--error alert--unstyled"><p>Could not load loyalty balance.</p></span>';
+  }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const customerId = {{ customer.id | json }};
+  const email = {{ customer.email | json }};
+  const ordersContainer = document.querySelector('[data-rex-orders]');
+  if (!ordersContainer) return;
+
+  try {
+    const res = await fetch(`https://rex-api.jayden-e91.workers.dev/customer-orders?customerId=${customerId}&email=${encodeURIComponent(email)}`);
+    const data = await res.json();
+
+    if (!data.success || !Array.isArray(data.orders)) throw new Error("Invalid response");
+
+    // Remove loading message
+    ordersContainer.querySelectorAll('.loading-orders-note').forEach(el => el.remove());
+
+    const allOrders = data.orders
+      .filter(order => !(order.sales_channel?.shopify_channel))
+      .sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
+
+    const desktopTbody = ordersContainer.querySelector(".desktop-only .tbody");
+    const mobileSlider = ordersContainer.querySelector(".mobile-only .orders-slider");
+    const desktopTable = ordersContainer.querySelector(".account-table.desktop-only");
+
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("rex_page") || "1");
+    const perPage = 10;
+    const totalPages = Math.ceil(allOrders.length / perPage);
+    const paginatedOrders = allOrders.slice((page - 1) * perPage, page * perPage);
+
+    const createRow = (order) => {
+      const paid = !!order.paid_in_full_on;
+      const date = new Date(order.created_on).toLocaleDateString('en-AU', { year: 'numeric', month: 'short', day: 'numeric' });
+      const statusHTML = paid
+        ? `<span class="status-align-right"><span class="status-paid">Paid</span></span>`
+        : `<span class="status-align-right"><span class="status-unpaid">Unpaid</span></span>`;
+
+      return `
+        <div class="tr orders">
+          <div class="td"><span class="label">Order</span><span><a href="https://shop.tabletopwarfare.com.au/pages/instore-order/?id=${order.order_number}">#${order.order_number}</a></span></div>
+          <div class="td"><span class="label">Date</span><span>${date}</span></div>
+          <div class="td"><span class="label">Location</span><span>${order.outlet?.name || 'Unknown'}</span></div>
+          <div class="td"><span class="label">Payment Status</span>${statusHTML}</div>
+          <div class="td"><span class="label">Total</span><span>$${order.order_total?.toFixed(2)}</span></div>
+          <div class="td mobile-cta"><a href="https://shop.tabletopwarfare.com.au/pages/instore-order/?id=${order.order_number}" class="button button--outline button--regular">View Order</a></div>
+        </div>
+      `;
+    };
+
+    // Desktop: render paginated orders
+    paginatedOrders.forEach(order => {
+      desktopTbody.insertAdjacentHTML('beforeend', createRow(order));
+    });
+
+    // Mobile: render all orders (no pagination)
+    allOrders.forEach(order => {
+      mobileSlider.insertAdjacentHTML('beforeend', createRow(order));
+    });
+
+    // Desktop-only pagination
+    if (window.innerWidth >= 768 && totalPages > 1 && desktopTable) {
+      const svgArrow = `<svg width="13" height="8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.414.086 7.9 6.57 6.485 7.985 0 1.5 1.414.086Z" fill="#000"></path><path d="M12.985 1.515 6.5 8 5.085 6.586 11.571.101l1.414 1.414Z" fill="#000"></path></svg>`;
+
+      let navHTML = '<nav role="navigation" class="desktop-only"><ul class="pagination">';
+
+      // Prev
+      navHTML += page > 1
+        ? `<li class="prev"><a href="?rex_page=${page - 1}"><span class="visually-hidden">Previous</span><span aria-hidden="true">${svgArrow}</span></a></li>`
+        : `<li class="prev disabled"><span class="visually-hidden">Previous</span><span aria-hidden="true">${svgArrow}</span></li>`;
+
+      // Page links
+      for (let i = 1; i <= totalPages; i++) {
+        navHTML += i === page
+          ? `<li class="lap-hide active" aria-current="page"><span class="visually-hidden">page</span> ${i}</li>`
+          : `<li class="lap-hide"><a href="?rex_page=${i}"><span class="visually-hidden">page</span> ${i}</a></li>`;
+      }
+
+      // Next
+      navHTML += page < totalPages
+        ? `<li class="next"><a href="?rex_page=${page + 1}"><span class="visually-hidden">Next</span><span aria-hidden="true">${svgArrow}</span></a></li>`
+        : `<li class="next disabled"><span class="visually-hidden">Next</span><span aria-hidden="true">${svgArrow}</span></li>`;
+
+      navHTML += '</ul></nav>';
+
+      // Append after the desktop order table
+      desktopTable.insertAdjacentHTML('afterend', navHTML);
+    }
+
+    // Clear fallback errors
+    ordersContainer.querySelectorAll('.alert, p').forEach(el => el.remove());
+
+  } catch (err) {
+    console.error('REX order fetch failed:', err);
+    ordersContainer.innerHTML = `<p class="alert alert--error">Could not load your in-store purchases.</p>`;
+  }
+});
+</script>
+
+
+{% schema %}
+  {
+    "name": "t:sections.local-extra-words.sections.customers.account.name",
+    "class": "section--remove-bottom-margin-after"
+  }
+{% endschema %}

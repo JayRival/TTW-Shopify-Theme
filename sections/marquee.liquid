@@ -1,0 +1,122 @@
+{%- if section.blocks.size > 0 -%}
+
+  <div class="{% unless section.settings.remove_top_margin %} container--vertical-space {% endunless %}">
+
+    <style type="text/css">
+      #element-{{ section.id }} {
+        --animation-speed: {{ section.settings.speed }}s;
+        {% if section.settings.color_background_main != 'rgba(0,0,0,0)' %}
+          background: {{ section.settings.color_background_main }};
+        {% endif %}
+      }
+      {% if section.settings.color_text_main != 'rgba(0,0,0,0)' %}
+        #element-{{ section.id }}, #element-{{ section.id }} a {
+          color: {{ section.settings.color_text_main }};
+        }
+      {% endif %}
+    </style>
+    {{ 'section-marquee.css' | asset_url | stylesheet_tag }}
+
+    <scrolling-text id="element-{{ section.id }}" class="marquee text-size--xlarge marquee-direction--{{ section.settings.scroll_direction }} {% if section.settings.pause_on_hover %}marquee--pause-on-mouseover{% endif %}">
+      <div class="marquee__container">  
+        {%- liquid
+          for block in section.blocks
+            echo block.settings.marquee_text
+          endfor
+        -%}
+      </div>
+    </scrolling-text>
+
+  </div>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.local-extra-words.sections.marquee.name",
+  "class": "mount-scrolling-text",
+  "settings": [
+    {
+      "id": "scroll_direction",
+      "type": "select",
+      "options": [
+        {
+          "value": "right",
+          "label": "t:sections.rich-text.settings.text_alignment.options__3.label"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.rich-text.settings.text_alignment.options__1.label"
+        }
+      ],
+      "default": "left",
+      "label": "t:sections.local-extra-words.sections.marquee.settings.scroll_direction"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "t:sections.local-extra-words.sections.marquee.settings.scroll_speed",
+      "min": 1,
+      "max": 60,
+      "step": 1,
+      "default": 20,
+      "unit": "s",
+      "info": "t:sections.local-extra-words.sections.marquee.settings.scroll_speed_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "t:sections.local-extra-words.sections.marquee.settings.pause_on_mouseover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_top_margin",
+      "label": "t:sections.local-extra-words.settings_schema.layout.sections.remove_vertical_space",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.local-extra-words.sections.headings.custom_colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background_main",
+      "label": "t:sections.split-extra-words.settings_schema.colors.settings.background",
+      "default": "#e9e9e9"
+    },
+    {
+      "type": "color",
+      "id": "color_text_main",
+      "label": "t:sections.split-extra-words.settings_schema.colors.settings.text",
+      "default": "rgba(0,0,0,0)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "t:sections.local-extra-words.sections.marquee.settings.scroll_item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.local-extra-words.sections.headings.text_content"
+        },
+        {
+          "type": "richtext",
+          "id": "marquee_text",
+          "label": "t:sections.local-extra-words.sections.marquee.settings.scroll_item_text",
+          "default": "<p>Default scrolling text. Lorem ipsum texturum marquee tamet</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.local-extra-words.sections.marquee.name",
+      "blocks": [
+        { "type": "text" }
+      ]
+    }
+  ]
+}
+{% endschema %}

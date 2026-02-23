@@ -1,0 +1,106 @@
+{{ 'section-newsletter.css' | asset_url | stylesheet_tag }}
+
+<div id="element-{{ section.id }}" class="container--large container--vertical-space text-align--center">
+
+  <div class="card newsletter gutter-top--xlarge gutter-bottom--xlarge">
+		<div class="newsletter__container spacing--xlarge">
+
+      {%- if section.settings.show_icon -%}
+        <div class="newsletter__icon">
+          {%- render 'theme-symbols', icon: 'send', color: section.settings.color_text_main -%}
+        </div>
+      {%- endif -%}
+
+      {%- unless section.settings.title == blank -%}
+			  <div class="increased-spacing">
+          <h3 class="h3">{{ section.settings.title | escape }}</h3>
+        </div>
+      {%- endunless -%}
+
+      {%- assign form_id = 'newsletter-' | append: section.id -%}
+      {%- form 'customer', id: form_id, class: 'increased-spacing' -%}
+      
+        {%- render 'form-errors', form: form -%}
+
+        {%- if form.posted_successfully? -%}
+          
+          <p class="text-size--large">{{ 'general.newsletter.confirmation' | t }}</p>
+
+        {%- else -%}
+          
+          <fieldset>
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input type="email" class="newsletter__input" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter.email_label' | t }}" name="contact[email]" id="Email-{{ form_id }}" aria-label="{{ 'general.newsletter.email_label' | t }}" autocorrect="off" autocapitalize="off" required>
+            <button type="submit" class="button button--outline button--large" id="Subscribe-{{ form_id }}" aria-label="{{ 'general.newsletter.submit_label' | t }}">
+              <span aria-hidden="true">{{ 'general.newsletter.submit_label' | t }}</span>
+            </button>
+          </fieldset>
+
+        {%- endif -%}
+
+      {%- endform -%}
+
+      {%- unless section.settings.text == blank -%}
+        <div class="increased-spacing">
+          <span class="newsletter__info text-size--small">{{ section.settings.text }}</span>
+        </div>
+      {%- endunless -%}
+
+		</div>
+  </div>
+
+	{%- render 'custom-colors', id: section.id, text: section.settings.color_text_main, background: section.settings.color_background_main, borders: section.settings.color_borders_main -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "t:sections.local-extra-words.sections.newsletter.show_icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.local-extra-words.sections.headings.title",
+      "default": "Your best promotion yet"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:sections.rich-text.blocks.text.settings.text.label",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements or welcome customers to your store.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.local-extra-words.sections.headings.custom_colors"
+    },
+    {
+      "type": "color",
+      "id": "color_background_main",
+      "label": "t:sections.split-extra-words.settings_schema.colors.settings.background",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "color_text_main",
+      "label": "t:sections.split-extra-words.settings_schema.colors.settings.text",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "color_borders_main",
+      "label": "t:sections.local-extra-words.settings_schema.colors.settings.borders",
+      "default": "rgba(0,0,0,0)"
+    }
+  ],
+  "presets": [
+      {
+        "name": "t:sections.newsletter.name"
+      }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,121 @@
+{%- if predictive_search.performed -%}
+
+	<div class="search-results" data-js-search-results-holder>
+
+		{%- if predictive_search.resources.products.size > 0 -%}
+
+      <div class="search-block">
+
+        <span class="search-title">{{ 'search.form.product_results_title' | t }}</span>
+
+        {%- for product in predictive_search.resources.products -%}
+
+          <div class="search-item cart-item" data-js-search-item>
+
+            <a tabindex="-1" href="{{ product.url }}" title="{{ product.title | escape }}" class="cart-item__thumbnail element--border-width-clamped element--border-radius">
+              {%- if product.featured_media != blank -%}
+                <figure class="lazy-image element--border-radius" data-ratio style="padding-top: 110%">
+                  <img 
+                    src="{{ product.featured_media | image_url: width: 100, height: 110, crop: 'center' }}" alt="{{ product.title | escape }}"
+                    srcset="{{ product.featured_media | image_url: width: 100, height: 110, crop: 'center' }} 100w, {{ product.featured_media | image_url: width: 200, height: 220, crop: 'center' }} 200w, {{ product.featured_media | image_url: width: 300, height: 330, crop: 'center' }} 300w"
+                    loading="lazy"
+                    sizes="100px"
+                    width="100" height="110"
+                    onload="this.parentNode.classList.add('lazyloaded')"
+                  />
+                </figure>
+              {%- else -%}
+                <span class="onboarding-svg">{{ 'product-1' | placeholder_svg_tag }}</span>
+              {%- endif -%}
+            </a>
+
+            <div class="cart-item__content">
+
+              <div>
+
+                {%- if settings.predictive_search_show_price -%}
+                  <div class="cart-item__price">
+                    {%- assign variant = product.selected_or_first_available_variant -%}
+                    <span class="price">
+                      <span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+                      {{ variant.price | money }}
+                      {%- if variant.compare_at_price > variant.price -%}
+                        <span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+                        <span><del>{{ variant.compare_at_price | money }}</del></span>
+                      {%- endif -%}
+                    </span>
+                  </div>
+                {%- endif -%}
+
+                <a tabindex="-1" href="{{ product.url }}" class="cart-item__title">
+                  <span class="text-animation--underline-thin">{{ product.title | escape }}</span>
+                </a>
+
+                {%- if settings.predictive_search_show_vendor -%}
+                  <span class="vendor text-size--small text-color--opacity">{{ product.vendor }}</span>
+                {%- endif -%}
+
+              </div>
+
+            </div>
+
+          </div>
+
+			  {%- endfor -%}
+
+      </div>
+
+		{%- endif -%}
+
+		{%- if predictive_search.resources.pages.size > 0 -%}
+      <div class="search-block">
+        <span class="search-title">{{ 'search.form.page_results_title' | t }}</span>
+        {%- for page in predictive_search.resources.pages -%}
+          <a 
+            href="{{ page.url }}" tabindex="-1" 
+            class="search-item"
+            data-js-search-item
+          >
+            <span class="text-weight--bold"><span class="text-animation--underline-thin">{{ page.title | escape }}</span></span>
+          </a>
+        {%- endfor -%}
+      </div>
+		{%- endif -%}
+
+		{%- if predictive_search.resources.articles.size > 0 -%}
+      <div class="search-block">
+        <span class="search-title">{{ 'search.form.article_results_title' | t }}</span>
+        {%- for article in predictive_search.resources.articles -%}
+          <a 
+            href="{{ article.url }}" tabindex="-1" 
+            class="search-item"
+            data-js-search-item
+          >
+            <span class="text-weight--bold"><span class="text-animation--underline-thin">{{ article.title | escape }}</span></span>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+		{%- if predictive_search.resources.collections.size > 0 -%}
+      <div class="search-block">
+        <span class="search-title">{{ 'search.form.collection_results_title' | t }}</span>
+        {%- for collection in predictive_search.resources.collections -%}
+          <a 
+            href="{{ collection.url }}" tabindex="-1" 
+            class="search-item"
+            data-js-search-item
+          >
+            <span class="text-weight--bold"><span class="text-animation--underline-thin">{{ collection.title | escape }}</span></span>
+          </a>
+        {%- endfor -%}
+      </div>
+		{%- endif -%}
+
+	</div>
+
+  <div class="search-link">
+  	<a tabindex="-1" class="search-more button button--solid button--regular button--fullwidth" data-js-search-item href="{{ routes.search_url }}?q={{ predictive_search.terms }}&type=product{% if settings.predictive_search_include_pages %},page{% endif %}{% if settings.predictive_search_include_articles %},article{% endif %}&options[prefix]=last">{{ 'search.form.search_for_html' | t: terms: predictive_search.terms }}</a>
+  </div>
+
+{%- endif -%}

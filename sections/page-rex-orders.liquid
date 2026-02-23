@@ -1,0 +1,141 @@
+{{ 'section-account.css' | asset_url | stylesheet_tag }}
+
+<div class="container--large container--vertical-space">
+  <h1 class="h2 gutter-bottom--small">In-Store Order Details</h1><h3 id="rex-order-title"></h3>
+  <p class="text-size--small" id="rex-order-meta"></p>
+
+  <a class="text-link--has-icon" href="{{ routes.account_url }}">
+    {% render 'theme-symbols', icon: 'chevron-left' %}
+    <span>Back to Account</span>
+  </a>
+
+  <div class="account-layout gutter-top--regular" data-rex-order-wrapper data-customer-id="{{ customer.id }}" data-customer-email="{{ customer.email }}">
+    <main class="gutter-bottom--regular">
+      <div id="rex-order-status">
+        <p class="text-size--small loading">Loading order...</p>
+      </div>
+
+      <div class="account-table" id="rex-order-table" style="display:none;">
+        <div class="thead">
+          <div class="tr order">
+            <span class="th">Product</span>
+            <span class="th">Price</span>
+            <span class="th">Qty</span>
+            <span class="th">Total</span>
+          </div>
+        </div>
+        <div class="tbody" id="rex-order-body"></div>
+        <div class="tfoot" id="rex-order-summary"></div>
+      </div>
+    </main>
+
+    <aside>
+      <div class="account-widget" id="rex-order-billing">
+        <div class="account-widget__head">Billing</div>
+        <div class="account-widget__body"></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const wrapper = document.querySelector('[data-rex-order-wrapper]');
+  const orderId = new URLSearchParams(window.location.search).get('id');
+  const customerId = wrapper?.dataset.customerId;
+  const email = wrapper?.dataset.customerEmail;
+
+  if (!wrapper || !orderId || !customerId || !email) {
+    document.getElementById('rex-order-status').innerHTML = '<p class="alert alert--error">Missing order or authentication info.</p>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://rex-api.jayden-e91.workers.dev/customer-order?orderId=${orderId}`);
+    const data = await res.json();
+
+    if (!data.success || !data.order) {
+      throw new Error(data.error || "Order not found");
+    }
+
+    const order = data.order;
+    const tbody = document.getElementById('rex-order-body');
+    const summary = document.getElementById('rex-order-summary');
+    const billing = document.getElementById('rex-order-billing')?.querySelector('.account-widget__body');
+    const table = document.getElementById('rex-order-table');
+    const orderTitle = document.getElementById('rex-order-title');
+    const orderMeta = document.getElementById('rex-order-meta');
+
+    // Hide loading status
+    document.getElementById('rex-order-status').style.display = 'none';
+    table.style.display = 'block';
+
+    // Update header
+    const date = new Date(order.created_on).toLocaleString('en-AU', { dateStyle: 'long', timeStyle: 'short' });
+    if (orderTitle) orderTitle.textContent = `#${order.order_number}`;
+    if (orderMeta) orderMeta.textContent = `Placed on ${date}`;
+
+
+    // Line Items
+    const items = order.order_items || [];
+    items.forEach(item => {
+      const name = item.product?.short_description || 'Unnamed item';
+      const price = item.sell_price?.toFixed(2) || '0.00';
+      const original = item.original_price?.toFixed(2) || null;
+      const qty = item.quantity_ordered;
+      const total = item.order_item_total?.toFixed(2);
+      const discount = item.order_item_discount_total > 0;
+      const promo = item.applied_promotional_campaigns?.[0]?.name || '';
+
+      tbody.insertAdjacentHTML('beforeend', `
+        <div class="tr order">
+          <div class="td">
+            <span class="label">Product</span>
+            ${name}
+            ${promo ? `<div class="note text-size--small">Promo: ${promo}</div>` : ''}
+          </div>
+          <div class="td">
+            <span class="label">Price</span>
+            $${price}
+            ${discount && original && original > price ? `<br><del class="text-size--small">$${original}</del>` : ''}
+          </div>
+          <div class="td"><span class="label">Qty</span>${qty}</div>
+          <div class="td"><span class="label">Total</span>$${total}</div>
+        </div>
+      `);
+    });
+
+    // Summary
+    const paymentMethod = order.payments?.[0]?.payment_method?.name || 'Unknown';
+    summary.innerHTML = `
+      <div>Outlet: ${order.outlet?.name || 'Unknown'}</div>
+      <div>Salesperson: ${order.sales_person?.first_name || ''} ${order.sales_person?.surname || ''}</div>
+      <div>Payment Method: ${paymentMethod}</div>
+      <div class="text-size--xlarge gutter-top--small">
+        Total: <strong>$${order.order_total?.toFixed(2)}</strong>
+      </div>
+    `;
+
+    // Billing
+    if (billing) {
+      billing.innerHTML = `
+        <p><strong>Payment Status:</strong> ${order.paid_in_full_on ? 'Paid' : 'Unpaid'}</p>
+        <strong>${order.customer?.first_name || ''} ${order.customer?.last_name || ''}</strong><br>
+        ${order.billing_address?.email || ''}
+      `;
+    }
+
+  } catch (err) {
+    console.error('Error loading in-store order:', err);
+    document.getElementById('rex-order-status').innerHTML = `<p class="alert alert--error">Could not load your order.</p>`;
+  }
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "In-Store Order Details",
+  "class": "section--remove-bottom-margin-after"
+}
+{% endschema %}

@@ -193,7 +193,7 @@
       scroller.dataset.hintInit = "true";
 
       let hasInteracted = false;
-      let currentIndex = 0;
+      let intervalId = null;
 
       const cards = scroller.querySelectorAll('.card');
       if (!cards.length) return;
@@ -203,61 +203,60 @@
       const cardWidth = () =>
         cards[0].getBoundingClientRect().width + gap;
 
-      const maxIndex = cards.length - 1;
-
-      // Detect interaction
+      // Stop everything on interaction
       ['touchstart','mousedown','wheel','keydown','scroll'].forEach(evt => {
         scroller.addEventListener(evt, () => {
           hasInteracted = true;
+          if (intervalId) clearInterval(intervalId);
         }, { passive: true });
       });
 
-      // Soft wobble motion
       const wobble = () => {
-        scroller.scrollBy({ left: 18, behavior: 'smooth' });
+        scroller.scrollBy({ left: 14, behavior: 'smooth' });
         setTimeout(() => {
-          scroller.scrollBy({ left: -10, behavior: 'smooth' });
-        }, 180);
+          scroller.scrollBy({ left: -8, behavior: 'smooth' });
+        }, 160);
         setTimeout(() => {
-          scroller.scrollBy({ left: 22, behavior: 'smooth' });
-        }, 360);
+          scroller.scrollBy({ left: 18, behavior: 'smooth' });
+        }, 320);
       };
 
-      // Move to card by index
-      const goToIndex = (index) => {
-        scroller.scrollTo({
-          left: Math.round(cardWidth() * index),
-          behavior: 'smooth'
-        });
-      };
-
-      // Looping idle animation
-      const loop = () => {
+      const moveNext = () => {
         if (hasInteracted) return;
+
+        const width = cardWidth();
+        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+        let target = scroller.scrollLeft + width;
+
+        // Loop back to start
+        if (target >= maxScroll - 10) {
+          target = 0;
+        }
+
+        // Temporarily disable snap
+        const originalSnap = scroller.style.scrollSnapType;
+        scroller.style.scrollSnapType = 'none';
 
         wobble();
 
         setTimeout(() => {
+          scroller.scrollTo({
+            left: Math.round(target),
+            behavior: 'smooth'
+          });
 
-          if (currentIndex < maxIndex) {
-            currentIndex++;
-          } else {
-            currentIndex = 0; // loop back to start
-          }
+          // Restore snap
+          setTimeout(() => {
+            scroller.style.scrollSnapType = originalSnap || '';
+          }, 700);
 
-          goToIndex(currentIndex);
-
-          // Continue looping after pause
-          setTimeout(loop, 2600);
-
-        }, 900);
+        }, 700);
       };
 
-      // Initial delay before starting loop
+      // Start loop
       setTimeout(() => {
-        if (!hasInteracted) {
-          loop();
-        }
+        if (hasInteracted) return;
+        intervalId = setInterval(moveNext, 3000);
       }, 2200);
 
     });

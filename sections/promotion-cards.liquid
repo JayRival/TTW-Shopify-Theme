@@ -72,15 +72,18 @@
 
 }
 
-/* Fade edges (visual hint there is more content) */
+/* ==========================================================
+   Tighter Edge Fade (does not affect active card)
+   ========================================================== */
+
 @media (max-width: 1024px) {
 
   .promo-cards-scroll {
     mask-image: linear-gradient(
       to right,
       transparent 0%,
-      black 6%,
-      black 94%,
+      black 2.5%,
+      black 97.5%,
       transparent 100%
     );
   }

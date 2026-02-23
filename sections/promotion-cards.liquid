@@ -184,7 +184,6 @@
     const scrollers = document.querySelectorAll('.promo-cards-scroll');
 
     if (!scrollers.length) {
-      // Try again shortly (section may load after DOMContentLoaded)
       setTimeout(tryInit, 400);
       return;
     }
@@ -199,8 +198,10 @@
       const cards = scroller.querySelectorAll('.card');
       if (!cards.length) return;
 
+      const gap = 16;
+
       const cardWidth = () =>
-        cards[0].getBoundingClientRect().width + 16;
+        cards[0].getBoundingClientRect().width + gap;
 
       // Detect interaction
       ['touchstart','mousedown','wheel','keydown','scroll'].forEach(evt => {
@@ -209,24 +210,32 @@
         }, { passive: true });
       });
 
+      // Smooth wobble animation
+      const wobble = () => {
+        scroller.scrollBy({ left: 18, behavior: 'smooth' });
+        setTimeout(() => {
+          scroller.scrollBy({ left: -10, behavior: 'smooth' });
+        }, 180);
+
+        setTimeout(() => {
+          scroller.scrollBy({ left: 22, behavior: 'smooth' });
+        }, 360);
+      };
+
       // Idle hint
       setTimeout(() => {
         if (hasInteracted || hasRun) return;
         hasRun = true;
 
-        // Micro nudge
-        scroller.scrollBy({
-          left: 24,
-          behavior: 'smooth'
-        });
+        wobble();
 
-        // Then scroll to next card
+        // Land cleanly on next card
         setTimeout(() => {
-          scroller.scrollBy({
-            left: cardWidth(),
+          scroller.scrollTo({
+            left: Math.round(cardWidth()),
             behavior: 'smooth'
           });
-        }, 500);
+        }, 900);
 
       }, 2200);
 

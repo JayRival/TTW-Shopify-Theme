@@ -1,0 +1,62 @@
+/*
+ *  1.0. Mixins
+*/
+.marquee {
+  color: var(--color-text-main);
+  border: 0;
+  width: 100%;
+  height: 6.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media screen and (max-width: 1023px) {
+  .marquee {
+    height: 5rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .marquee {
+    height: 3.75rem;
+  }
+}
+.marquee-direction--right {
+  text-align: right;
+}
+.marquee-direction--right .marquee__container {
+  animation-direction: reverse !important;
+}
+.marquee--pause-on-mouseover .marquee__container:hover {
+  animation-play-state: paused;
+}
+.marquee__container {
+  display: flex;
+  align-items: center;
+  animation: marquee var(--animation-speed) linear infinite forwards normal;
+  will-change: transform;
+  gap: 15rem;
+}
+@media screen and (max-width: 1023px) {
+  .marquee__container {
+    gap: 5rem;
+  }
+}
+.marquee__container p {
+  margin-bottom: 0;
+}
+.marquee__container a {
+  text-decoration: underline;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -1,0 +1,45 @@
+{% schema %}
+{
+  "name": "REX Availability Block",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "block_title",
+      "default": "Stock Availability",
+      "info": "Title for the block to use"
+    },
+    {
+      "type": "checkbox",
+      "label": "Display Store Info",
+      "id": "show_store_info",
+      "default": true,
+      "info": "Toggle whether store-specific stock info is displayed"
+    }
+  ],
+  "presets": [
+    {
+      "name": "REX Inventory",
+    }
+  ]
+}
+{% endschema %}
+
+<div id="rex-availability-block">
+  <h2>{{ settings.block_title }}</h2>
+  {% if settings.show_store_info %}
+    <div id="store-stock-info">
+      <p>Stock available at:</p>
+      <!-- Display store-specific info here -->
+    </div>
+  {% endif %}
+  <button id="change-store" type="button">Change Store</button>
+</div>
+
+{% stylesheet %}
+/* Add block-specific styles here */
+{% endstylesheet %}
+
+{% javascript %}
+// Add block-specific JavaScript functionality here
+{% endjavascript %}

@@ -1,10 +1,88 @@
+<style>
+
+/* ==========================================================
+   Promo Cards – Mobile / Tablet Horizontal Scroller
+   ========================================================== */
+
+@media (max-width: 1024px) {
+
+  .promo-cards-scroll {
+    display: flex !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 16px;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    padding-bottom: 12px;
+    padding-right: 12%;
+    position: relative;
+  }
+
+  /* Visible but subtle scrollbar */
+  .promo-cards-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .promo-cards-scroll::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+  }
+
+  .promo-cards-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.35);
+    border-radius: 10px;
+  }
+
+  /* Firefox */
+  .promo-cards-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.35) rgba(0,0,0,0.08);
+  }
+
+  .promo-cards-scroll .card {
+    flex: 0 0 80%;
+    max-width: 80%;
+    scroll-snap-align: start;
+  }
+
+}
+
+/* Smaller phones */
+@media (max-width: 640px) {
+
+  .promo-cards-scroll .card {
+    flex-basis: 85%;
+    max-width: 85%;
+  }
+
+}
+
+/* Fade edges (visual hint there is more content) */
+@media (max-width: 1024px) {
+
+  .promo-cards-scroll {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 6%,
+      black 94%,
+      transparent 100%
+    );
+  }
+
+}
+
+</style>
+
 <div class="container--large container--vertical-space">
 
   {%- render 'section-heading', heading: section.settings.heading, subheading: section.settings.subheading -%}
 
   {%- if section.blocks.size > 0 -%}
       
-    <div class="grid grid--layout {{ section.settings.layout }}">
+    <div class="grid grid--layout {{ section.settings.layout }} promo-cards-scroll">
 
       {%- for block in section.blocks -%}
 

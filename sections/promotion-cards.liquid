@@ -193,7 +193,7 @@
       scroller.dataset.hintInit = "true";
 
       let hasInteracted = false;
-      let hasRun = false;
+      let currentIndex = 0;
 
       const cards = scroller.querySelectorAll('.card');
       if (!cards.length) return;
@@ -203,6 +203,8 @@
       const cardWidth = () =>
         cards[0].getBoundingClientRect().width + gap;
 
+      const maxIndex = cards.length - 1;
+
       // Detect interaction
       ['touchstart','mousedown','wheel','keydown','scroll'].forEach(evt => {
         scroller.addEventListener(evt, () => {
@@ -210,33 +212,52 @@
         }, { passive: true });
       });
 
-      // Smooth wobble animation
+      // Soft wobble motion
       const wobble = () => {
         scroller.scrollBy({ left: 18, behavior: 'smooth' });
         setTimeout(() => {
           scroller.scrollBy({ left: -10, behavior: 'smooth' });
         }, 180);
-
         setTimeout(() => {
           scroller.scrollBy({ left: 22, behavior: 'smooth' });
         }, 360);
       };
 
-      // Idle hint
-      setTimeout(() => {
-        if (hasInteracted || hasRun) return;
-        hasRun = true;
+      // Move to card by index
+      const goToIndex = (index) => {
+        scroller.scrollTo({
+          left: Math.round(cardWidth() * index),
+          behavior: 'smooth'
+        });
+      };
+
+      // Looping idle animation
+      const loop = () => {
+        if (hasInteracted) return;
 
         wobble();
 
-        // Land cleanly on next card
         setTimeout(() => {
-          scroller.scrollTo({
-            left: Math.round(cardWidth()),
-            behavior: 'smooth'
-          });
-        }, 900);
 
+          if (currentIndex < maxIndex) {
+            currentIndex++;
+          } else {
+            currentIndex = 0; // loop back to start
+          }
+
+          goToIndex(currentIndex);
+
+          // Continue looping after pause
+          setTimeout(loop, 2600);
+
+        }, 900);
+      };
+
+      // Initial delay before starting loop
+      setTimeout(() => {
+        if (!hasInteracted) {
+          loop();
+        }
       }, 2200);
 
     });

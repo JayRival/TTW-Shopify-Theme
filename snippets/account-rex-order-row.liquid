@@ -1,0 +1,34 @@
+<div class="tr orders">
+  <div class="td">
+    <span class="label">Order</span>
+    <span><a href="/pages/instore-order/id?{{ order.order_number }}">#{{ order.order-number }}</a></span>
+  </div>
+
+  <div class="td">
+    <span class="label">Date</span>
+    <span>{{ order.created_on | date: "%b %d, %Y" }}</span>
+  </div>
+
+  <div class="td">
+    <span class="label">Location</span>
+    <span>{{ order.outlet.name }}</span>
+  </div>
+
+  <div class="td">
+    <span class="label">Total</span>
+    <span>{{ order.order_total | money }}</span>
+  </div>
+
+  <div class="td">
+    <span class="label">Payment Status</span>
+    {% if order.paid_in_full_on %}
+      <span class="status-align-right status--paid">Paid</span>
+    {% else %}
+      <span class="status-align-right status--unpaid">Unpaid</span>
+    {% endif %}
+  </div>
+
+  <div class="td mobile-cta">
+    <a href="/pages/instore-order/id?{{ order.order_number }}" class="button button--outline button--regular">View Order</a>
+  </div>
+</div>

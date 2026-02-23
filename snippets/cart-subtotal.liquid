@@ -1,0 +1,76 @@
+<div id="AjaxCartSubtotal">
+
+	{%- liquid
+		if type == 'page' and settings.cart_free_shipping
+			assign free_shipping_in_cents = settings.cart_free_shipping_amount | times: 100
+			assign free_shipping_remaining_amount = cart.total_price | minus: free_shipping_in_cents
+			if free_shipping_remaining_amount <= 0
+				assign free_shipping_remaining_amount_money = free_shipping_remaining_amount | abs | money
+				assign alert_message = 'cart.free_shipping_remaining_html' | t: remaining_amount: free_shipping_remaining_amount_money
+				assign alert_style = 'note'
+			else
+				assign alert_message = 'cart.free_shipping_eligible' | t
+				assign alert_style = 'success'
+			endif
+		endif
+	-%}
+	{%- if alert_message -%}
+		<div class="alert alert--wide alert--{{ alert_style }}">{{ alert_message }}</div>
+	{%- endif -%}
+
+	<div class="cart__details 
+		{% if type == 'page' %} cart__subtotal-widget element--has-border--body element--border-radius {% endif %}
+		{% if cart.item_count == 0 %} cart--empty {% endif %}
+	">
+			    
+		{%- if cart.cart_level_discount_applications != blank -%} 
+			<div class="cart__subtotal">
+				<span>{{ 'cart.subtotal' | t }}</span>
+				<strong class="text-size--xlarge">{{ cart.items_subtotal_price | money }}</strong>
+			</div>
+			<div class="cart__discounts">
+				<span>{{ 'cart.discounts' | t }}</span>
+				{%- for discount_application in cart.cart_level_discount_applications -%}
+					<strong class="text-size--large">{{ discount_application.title }} ( -{{ discount_application.total_allocated_amount | money }} )</strong>
+				{%- endfor -%}
+			</div>
+		{%- endif -%}
+
+		<div class="cart__total">
+			<span>{{ 'cart.total' | t }}</span> 
+			<strong class="text-size--heading">{{ cart.total_price | money }}</strong>
+		</div>
+
+
+		{%- if settings.cart_notes_enable and type == 'page' -%}
+			<div class="cart__instructions">
+				<div class="form-field">
+					<label for="cartSpecialInstructions">{{ 'cart.note' | t }}</label>
+					<textarea name="note" id="cartSpecialInstructions" form="cart">{{ cart.note }}</textarea>
+				</div>
+			</div>
+		{%- endif -%}
+
+		<div class="cart__shipping text-color--opacity text-size--small">
+			
+           {%- liquid echo 'For local pickup at a store, please view the cart page to select a location' -%}
+		</div>
+
+		<div {% unless template contains 'cart' %} class="flex-buttons" {% endunless %}>
+			{%- unless type == 'page' -%}
+				<a id="ViewCart" href="{{ routes.cart_url }}" class="button button--regular button--solid">{{ 'cart.view_cart' | t }}</a>
+			{%- endunless -%}
+             {% if template contains 'cart' %}
+			<button id="CheckOut" class="button button--regular button--outline confirmation" type="submit" name="checkout" form="cart">
+				{{ 'cart.checkout' | t }}
+			</button>
+               {% endif %}
+		</div>
+
+		{%- unless template contains 'order' -%}  
+			{%- if additional_checkout_buttons and settings.cart_additional_buttons -%}
+				<div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>
+			{%- endif -%}
+		{%- endunless -%}
+    </div>
+</div>

@@ -1,0 +1,294 @@
+<h3 style="font-size:18px">Select Your Shipping Method</h3>
+<cart-form id="AjaxCartForm">
+
+	<form action="{{ routes.cart_url }}" method="post" novalidate class="cart__form {% if cart.item_count == 0 %} cart--empty {% endif %}" id="cart">
+	
+		<div class="cart-holder cart-block element--border-radius element--no-border-on-small margin-bottom--regular" data-items="{{ cart.items.size }}">
+          <div class="cnc-wrapper" style="margin-bottom:15px;">
+    <div id="cnc-container"></div>
+    <div id="cnc-results-container"></div>
+</div>
+			<div class="cart-form__items element--has-border--body {% if cart.item_count == 0 %} gutter--regular {% endif %}">
+				{%- if cart.item_count > 0 -%}
+					<div class="cart-block__head element--hide-on-small">
+						<span>{{ 'cart.table.product' | t }}</span>
+						<span>{{ 'cart.table.quantity' | t }}</span>
+						<span class="text-align--right">{{ 'cart.table.total' | t }}</span>
+					</div>
+					{%- for item in cart.items -%}
+
+						<div id="item-{{ item.id }}" class="cart-form-item" data-title="{{ item.product.title | escape }} {%- unless item.product.has_only_default_variant -%} ({{ item.variant.title | escape }}) {%- endunless -%}" data-id="{{ item.key }}" data-qty="{{ item.quantity }}" data-product-id="{{ item.product.id }}" data-js-cart-item>
+
+							<div class="cart-item__product-info cart-form-item--layout">
+
+								<a href="{{ item.url }}" class="cart-item__thumbnail element--border-width-clamped element--border-radius">
+									<figure class="lazy-image" data-ratio style="padding-top: 110%">
+										<img 
+											src="{{ item.image | image_url: width: 100, height: 110, crop: 'center' }}" alt="{{ item.title | escape }}"
+											srcset="{{ item.image | image_url: width: 100, height: 110, crop: 'center' }} 100w, {{ item.image | image_url: width: 200, height: 220, crop: 'center' }} 200w, {{ item.image | image_url: width: 300, height: 330, crop: 'center' }} 300w"
+											loading="lazy"
+											sizes="100px"
+											width="100" height="110"
+											onload="this.parentNode.classList.add('lazyloaded')"
+										/>
+									</figure>
+								</a>
+
+								<div class="cart-form-item__price-title-variants">
+									<div class="cart-item__price">
+
+										<div class="element--hide-on-small">
+
+											{%- if item.variant.compare_at_price > item.variant.price -%}
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+												<span>{{ item.variant.price | money }}</span>
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+												<span><del>{{ item.variant.compare_at_price | money }}</del></span>
+											{%- else -%}
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+												<span>{{ item.variant.price | money }}</span>
+											{%- endif -%}
+
+										</div>
+
+										<div class="element--hide-on-desk">
+											{%- if item.final_line_price < item.original_line_price -%}
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+												<strong>{{ item.final_line_price | money }}</strong>
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+												<span><del>{{ item.original_line_price | money }}</del></span>
+											{%- elsif item.variant.compare_at_price > item.variant.price -%}
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+												<strong>{{ item.final_line_price | money }}</strong>
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+												<span><del>{{ item.variant.compare_at_price | times: item.quantity | money }}</del></span>
+											{%- else -%}
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+												<strong>{{ item.final_line_price | money }}</strong>
+											{%- endif -%}
+										</div>                       
+									</div>
+
+									{%- if item.unit_price_measurement -%}
+										<span class="cart-item__unit-price text-size--small text-color--opacity">
+											{{ item.unit_price | money }} / 
+											{% if item.unit_price_measurement.reference_value != 1 %}
+												{{ item.unit_price_measurement.reference_value }}
+											{% endif %}
+											{{ item.unit_price_measurement.reference_unit }}
+										</span>
+									{%- endif -%}
+								
+									<a href="{{ item.url }}" class="cart-item__title">
+										<span class="text-animation--underline-thin">{{ item.product.title | escape }}</span>
+									</a>
+                      
+									{%- unless item.product.has_only_default_variant -%}
+											{%- for option in item.options_with_values -%}
+												<span class="cart-item__variant text-size--small text-color--opacity">
+													{{ option.name }}: {{ option.value }}
+												</span>
+											{%- endfor -%}
+									{%- endunless -%}
+
+									{%- if item.selling_plan_allocation -%}
+										<span class="text-size--small">
+											{{ item.selling_plan_allocation.selling_plan.name }} 
+										</span>
+									{%- endif -%}
+
+									{%- if item.line_level_discount_allocations.size > 0 -%}
+										{%- for discount_allocation in item.line_level_discount_allocations -%}
+											<spann class="text-size--xsmall">{{ 'cart.discount' | t }} {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})</spann>
+										{%- endfor -%}
+									{%- endif -%}
+                      
+                                    {% if item.product.metafields.custom.pre_order_boolean.value == true %}
+                                      <p class="preorder-note">Pre-Order Item
+                                      {% if item.product.metafields.custom.release_date.value != null %}
+                                          {% assign dateStart = item.product.metafields.custom.release_date.value | date: '%s' %}
+                                          {% assign nowTimestamp = 'now' | date: '%s' %}
+                                          {% assign diffSeconds = dateStart | minus: nowTimestamp %}
+                                          {% assign diffDays = diffSeconds | divided_by: 3600 | divided_by: 24 %}
+                                      {% if diffSeconds < 259200 %}
+                                          - Expected to Release on {{ dateStart | date: "%A" }}.</p>
+                                        {% else %}
+                                          - Expected to Release in {{ diffDays }} days.</p>
+                                        {% endif %}
+                                      {% endif %}
+                                      </p>
+                                    {%- endif -%}
+                                    
+                      
+									{%- assign property_size = item.properties | size -%}
+									{%- if property_size > 0 -%}
+										{%- for p in item.properties -%}
+											<span class="cart-item__variant text-size-small">
+												{%- unless p.last == blank -%}
+													{{ p.first }}:
+													{%- if p.last contains '/uploads/' -%}
+														<a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+													{%- else -%}
+														{{ p.last }}
+													{%- endif -%}
+												{%- endunless -%}
+											</span>
+										{%- endfor -%}
+									{%- endif -%}		
+								</div>
+
+								<div class="cart__quantity">
+									<div class="cart-item__actions">
+	
+										<product-quantity class="quantity-selector-holder">
+											<cart-product-quantity>
+												<button class="qty-button qty-minus no-js-hidden" aria-label="{{ 'general.accessibility_labels.decrease_quantity' | t }}" role="button" controls="updates_{{ item.id }}">
+													{%- render 'theme-symbols', icon: 'minus' -%}
+												</button>
+												<label for="qty-{{ id }}" class="visually-hidden">{{ 'general.accessibility_labels.quantity' | t }}</label>
+												<input type="number" name="updates[]" value="{{ item.quantity }}" min="0" class="qty qty-selector product__quantity" id="updates_{{ item.id }}" data-href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=$qty">
+												<button class="qty-button qty-plus no-js-hidden" aria-label="{{ 'general.accessibility_labels.increase_quantity' | t }}" role="button" controls="updates_{{ item.id }}">
+													{%- render 'theme-symbols', icon: 'plus' -%}
+												</button>
+											</cart-product-quantity>
+										</product-quantity>
+										<a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="remove text-link text-size--xsmall text-color--opacity" title="{{ 'cart.remove_item' | t }}">{{ 'cart.remove_item' | t }}</a>
+									</div>
+								</div>
+								
+								<div class="cart-item__total text-align--right">
+									{%- if item.final_line_price < item.original_line_price -%}
+										<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+										<strong>{{ item.final_line_price | money }}</strong>
+										<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+										<span><del>{{ item.original_line_price | money }}</del></span>
+									{%- elsif item.variant.compare_at_price > item.variant.price -%}
+										<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+										<strong>{{ item.final_line_price | money }}</strong>
+										<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+										<span><del>{{ item.variant.compare_at_price | times: item.quantity | money }}</del></span>
+									{%- else -%}
+										<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+										<strong>{{ item.final_line_price | money }}</strong>
+									{%- endif -%}
+								</div>
+							</div>
+
+						</div>
+
+					{%- endfor -%}
+
+				{%- else -%}
+
+					{{ 'cart.empty' | t }}
+
+				{%- endif -%}
+
+			</div>
+
+		</div>
+
+	</form>
+
+	<span class="cart__count hidden" aria-hidden="true" data-cart-count>{{ cart.item_count }}</span>
+	<span class="cart__total hidden" aria-hidden="true" data-cart-total>{{ cart.total_price | money }}</span>
+</cart-form>
+
+<noscript>
+	<button type="submit" class="button button--outline button--regular" form="cart">
+		{{ 'cart.update' | t }}
+	</button>
+</noscript>
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+       // Get the checkout button by its id
+       var checkoutButton = document.getElementById('CheckOut');
+
+       // Function to disable the button and apply styles
+       function disableCheckoutButton() {
+           if (checkoutButton) {
+               checkoutButton.textContent = 'Select Shipping Method';
+               checkoutButton.setAttribute('disabled', 'true'); // Explicitly set the disabled attribute
+               checkoutButton.style.backgroundColor = 'black'; // Set background color
+               checkoutButton.style.color = 'white'; // Set text color
+               checkoutButton.style.opacity = '0.5'; // Set opacity
+               checkoutButton.style.cursor = 'not-allowed'; // Change cursor
+               checkoutButton.style.pointerEvents = 'none'; // Prevent pointer events
+               console.log('Checkout button is now disabled');
+           }
+       }
+
+       // Disable the button after a delay (e.g., 2 seconds)
+       setTimeout(disableCheckoutButton, 2000);
+
+       // Get all elements with class btn-cnc
+       var btnCncElements = document.querySelectorAll('.btn-cnc');
+
+       // Add click event listeners to each btn-cnc element
+       btnCncElements.forEach(function(btnCnc) {
+           btnCnc.addEventListener('click', function() {
+               // Enable the checkout button and revert styles
+               if (checkoutButton) {
+                   checkoutButton.textContent = 'Checkout'; // Change text
+                   checkoutButton.removeAttribute('disabled'); // Explicitly remove the disabled attribute
+                   checkoutButton.style.backgroundColor = ''; // Reset background
+                   checkoutButton.style.color = ''; // Reset text color
+                   checkoutButton.style.opacity = ''; // Reset opacity
+                   checkoutButton.style.cursor = ''; // Reset cursor
+                   checkoutButton.style.pointerEvents = ''; // Enable pointer events
+                   console.log('Checkout button enabled');
+               }
+           });
+       });
+   });
+</script>
+<script>
+  // Function to update the cart with the selected store
+function updateStoreSelection() {
+    var selectedStore = document.querySelector('input[name="cnc-outlet-element"]:checked'); // Get selected input
+    
+    if (selectedStore) {  // Check if a radio button is selected
+        console.log('Selected store:', selectedStore.value); // Debugging: Log the selected store
+        
+        // Update the cart attributes using AJAX
+        fetch('/cart/update.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                attributes: {
+                    store_selection: selectedStore.value // Send the selected store value
+                }
+            })
+        }).then(response => {
+            if (response.ok) {
+                console.log('Store selection saved: ' + selectedStore.value);
+            } else {
+                console.error('Failed to save store selection');
+            }
+        }).catch(error => console.error('Error:', error));
+    } else {
+        console.error('No store selected'); // Debugging: Log if no store is selected
+    }
+}
+
+// Function to handle label clicks
+function handleLabelClick(event) {
+    // Find the input associated with the clicked label
+    var label = event.target;
+    var inputId = label.getAttribute('for'); // Get the ID of the associated input element
+    var inputElement = document.getElementById(inputId);
+
+    if (inputElement && inputElement.name === "cnc-outlet-element") {
+        inputElement.checked = true; // Select the input if the label is clicked
+        updateStoreSelection(); // Call the update function
+        console.log('Label clicked and input selected:', inputId); // Debugging: Log the clicked label
+    }
+}
+
+// Add event listeners to all label elements with class "cnc-outlet-label"
+document.querySelectorAll('label.cnc-outlet-label').forEach(function(label) {
+    label.addEventListener('click', handleLabelClick);
+});
+</script>

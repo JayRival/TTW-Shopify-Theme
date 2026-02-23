@@ -1,0 +1,23 @@
+<div class="tr orders">
+  <div class="td"><span class="label">Order</span><span>{{ order.name | link_to: order.customer_url }}</span></div>
+  <div class="td"><span class="label">Date</span><span>{{ order.created_at | date: "%b %d, %Y" }}</span></div>
+  <div class="td">
+    <span class="label">Payment Status</span>
+    <span class="status-align-right">
+      <span class="{% if order.financial_status_label == 'Paid' %}status-paid{% else %}status-unpaid{% endif %}">
+        {{ order.financial_status_label }}
+      </span>
+    </span>
+  </div>
+
+  <div class="td">
+  <span class="label">Fulfillment Status</span>
+  <span class="status-align-right">
+    <span class="{% if order.fulfillment_status_label == 'Fulfilled' %}status-fulfilled{% else %}status-unfulfilled{% endif %}">
+      {{ order.fulfillment_status_label }}
+    </span>
+  </span>
+  </div>
+  <div class="td"><span class="label">Total</span><span>{{ order.total_price | money }}</span></div>
+  <div class="td mobile-cta"><a href="{{ order.customer_url }}" class="button button--outline button--regular">View Order</a></div>
+</div>

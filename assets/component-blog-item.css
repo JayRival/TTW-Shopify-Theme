@@ -1,0 +1,23 @@
+/*
+ *  1.0. Mixins
+*/
+@media screen and (max-width: 767px) {
+  .blog-item {
+    margin-bottom: 1.25rem;
+  }
+}
+.blog-item__image {
+  display: block;
+}
+.blog-item__meta {
+  color: var(--color-secondary-text-main);
+}
+.blog-item__meta span:not(:last-child):after {
+  content: "|";
+  margin: 0 0.3125rem;
+  opacity: 0.5;
+}
+.blog-tags {
+  display: flex;
+  gap: 0 0.625rem;
+}

@@ -1,0 +1,349 @@
+{%- assign product_variant = product.selected_or_first_available_variant -%}
+
+<div id="product-item-{{ product.id }}" class="product-item card"
+  data-tags="{{ product.tags | join: ',' }}"
+  data-release-date="{{ product.metafields.custom.release_date }}"
+  data-delayed-release-date="{{ product.metafields.custom.delayed_release_date }}">
+
+  {%- liquid
+    
+    if settings.product_card_aspect_ratio == 'natural'
+      if product.media.size == 0 or blank_product
+        assign aspect_ratio = 1
+      else
+        unless product.featured_media.aspect_ratio > 0
+          assign aspect_ratio = 1
+        else
+          assign aspect_ratio = product.featured_media.aspect_ratio
+        endunless
+      endif
+    else
+      assign aspect_ratio = settings.product_card_aspect_ratio
+    endif
+
+  -%}
+
+  <a href="{{ product.url }}" 
+    class="card__image product-item__image
+    {% if section_blocks.size == 0 %} product-item__image--no-text {% endif %}
+    {% if settings.product_card_show_secondary_image and product.media.size >= 2 %} product-item__image--has-secondary {% endif %}"
+    style="padding-top:{{ 100 | divided_by: aspect_ratio }}%"
+  >
+
+    {%- liquid
+
+      unless layout == 'shop'
+        if layout contains 'grid-4'
+          assign sizes = '(max-width: 1023px) calc((100vw - 100px) / 3), (max-width: 1280px) calc((100vw - 120px) / 4), 300px"'
+        else 
+          assign sizes= '(max-width: 1280px) calc((100vw - 120px) / 3), 420px"'
+        endif
+        assign sizes = sizes | prepend: 'sizes="(max-width: 359px) calc(100vw - 30px), (max-width: 767px) calc((100vw - 50px) / 2),'
+      else
+        assign sizes = 'sizes="(max-width: 474px) calc((100vw - 100px) / 2), (max-width: 767px) calc((100vw - 50px) / 2), (max-width: 1023px) calc((100vw - 100px) / 3), (max-width: 1280px) calc((100vw - 150px) / 4), 285px"'
+      endunless
+      
+      if product.media.size == 0 or blank_product
+        echo 'image' | placeholder_svg_tag
+      else
+        render 'lazy-image', image: product.featured_media, alt: product.title, ratio: aspect_ratio, type: 'background', class: 'product-item__image-figure product-item__image-figure--primary lazy-image--animation', sizes: sizes, preload: preload
+      endif
+
+      if settings.product_card_show_secondary_image and product.media.size >= 2
+        render 'lazy-image', image: product.media[1], ratio: aspect_ratio, type: 'background', class: 'product-item__image-figure product-item__image-figure--secondary lazy-image--animation', sizes: sizes
+      endif
+
+    -%}
+
+  </a>
+
+  <div class="card__text product-item__text gutter--regular spacing--xlarge remove-empty-space text-align--{{ settings.product_card_text_alignment }}">
+
+    {%- for block in section_blocks -%}
+      {%- case block.type %}
+
+        {%- when 'title' -%}
+          <a class="product-item__title" 
+            href="{{ product.url }}" title="{{ product.title | escape }}" 
+            {{ block.shopify_attributes }}
+          >
+            <div class="remove-line-height-space--small">
+              <span class="text-animation--underline text-size--{{ settings.product_card_text_size }} text-line-height--small text-weight--bold text-animation--underline">
+                {%- liquid 
+                  unless blank_product 
+                    echo product.title 
+                  else 
+                    echo 'general.onboarding.product_title' | t
+                  endunless
+                -%}
+              </span>
+            </div>
+          </a>
+
+        {%- when 'price' -%}
+          <div 
+            class="product-item__price text-size--large equalize-white-space" 
+            {{ block.shopify_attributes }}
+          >
+            <div class="remove-line-height-space">
+              {% unless blank_product %}
+                {%- render 'product-price', target: product, variant: product_variant, product_price_varies: product.price_varies -%}
+              {%- else -%}
+                {{ 9999 | money }}
+              {%- endunless -%}
+            </div>
+          </div>
+
+        {%- when 'text' -%}
+          <div 
+            class="product-item__text {{ block.settings.text_size }} text-line-height--medium equalize-white-space"
+            style="
+              {% if block.settings.text_color != 'rgba(0,0,0,0)' %} color: {{ block.settings.text_color }}; {% endif %}
+              {% if block.settings.text_transform %} text-transform: uppercase {% endif %}
+            " 
+            {{ block.shopify_attributes }}
+          >
+            {%- liquid
+              assign metafield_reference = block.settings.metafield
+              if metafield_reference != blank
+                assign metafield_keys = metafield_reference | split: '.'
+                assign metafield_value = product.metafields[metafield_keys[0]][metafield_keys[1]]
+                if metafield_value != blank
+                  echo metafield_value | prepend: '<div class="remove-line-height-space--medium">' | append: '</div>'
+                endif              
+              endif
+            -%}
+          </div>
+
+        {%- when 'icons' -%}
+          <div 
+            class="product-item__icons"
+            {{ block.shopify_attributes }}
+          >
+            {%- liquid
+
+              if settings.product_icon_1_image != blank or settings.product_icon_1_label != blank
+                assign image_metafield_keys = settings.product_icon_1_image | split: '.'
+                assign icon_1_image = product.metafields[image_metafield_keys[0]][image_metafield_keys[1]] | image_url
+                assign label_metafield_keys = settings.product_icon_1_label | split: '.'
+                assign icon_1_image_label = product.metafields[label_metafield_keys[0]][label_metafield_keys[1]]
+                render 'product-icon-label', icon: icon_1_image, label: icon_1_image_label, style: 'tooltip'
+              endif
+
+              if settings.product_icon_2_image != blank or settings.product_icon_2_label != blank
+                assign image_metafield_keys = settings.product_icon_2_image | split: '.'
+                assign icon_2_image = product.metafields[image_metafield_keys[0]][image_metafield_keys[1]] | image_url
+                assign label_metafield_keys = settings.product_icon_2_label | split: '.'
+                assign icon_2_image_label = product.metafields[label_metafield_keys[0]][label_metafield_keys[1]]
+                render 'product-icon-label', icon: icon_2_image, label: icon_2_image_label, style: 'tooltip'
+              endif
+
+              if settings.product_icon_3_image != blank or settings.product_icon_3_label != blank
+                assign image_metafield_keys = settings.product_icon_3_image | split: '.'
+                assign icon_3_image = product.metafields[image_metafield_keys[0]][image_metafield_keys[1]] | image_url
+                assign label_metafield_keys = settings.product_icon_3_label | split: '.'
+                assign icon_3_image_label = product.metafields[label_metafield_keys[0]][label_metafield_keys[1]]
+                render 'product-icon-label', icon: icon_3_image, label: icon_3_image_label, style: 'tooltip'
+              endif
+
+              if settings.product_icon_4_image != blank or settings.product_icon_4_label != blank
+                assign image_metafield_keys = settings.product_icon_4_image | split: '.'
+                assign icon_4_image = product.metafields[image_metafield_keys[0]][image_metafield_keys[1]] | image_url
+                assign label_metafield_keys = settings.product_icon_4_label | split: '.'
+                assign icon_4_image_label = product.metafields[label_metafield_keys[0]][label_metafield_keys[1]]
+                render 'product-icon-label', icon: icon_4_image, label: icon_4_image_label, style: 'tooltip'
+              endif
+
+              if settings.product_icon_5_image != blank or settings.product_icon_5_label != blank
+                assign image_metafield_keys = settings.product_icon_5_image | split: '.'
+                assign icon_5_image = product.metafields[image_metafield_keys[0]][image_metafield_keys[1]] | image_url
+                assign label_metafield_keys = settings.product_icon_5_label | split: '.'
+                assign icon_5_image_label = product.metafields[label_metafield_keys[0]][label_metafield_keys[1]]
+                render 'product-icon-label', icon: icon_5_image, label: icon_5_image_label, style: 'tooltip'
+              endif
+
+              if settings.product_icon_6_image != blank or settings.product_icon_6_label != blank
+                assign image_metafield_keys = settings.product_icon_6_image | split: '.'
+                assign icon_6_image = product.metafields[image_metafield_keys[0]][image_metafield_keys[1]] | image_url
+                assign label_metafield_keys = settings.product_icon_6_label | split: '.'
+                assign icon_6_image_label = product.metafields[label_metafield_keys[0]][label_metafield_keys[1]]
+                render 'product-icon-label', icon: icon_6_image, label: icon_6_image_label, style: 'tooltip'
+              endif
+
+            -%}
+
+          </div>
+
+        {%- when 'vendor' -%}
+          <div 
+            class="product-item__vendor text-size--large text-color--opacity equalize-white-space" 
+            {{ block.shopify_attributes }}
+          >
+            <div class="remove-line-height-space">{{ product.vendor }}</div>
+          </div>
+
+        {%- when 'quick_buy' -%}
+          {%- if product.available -%}
+            <div 
+              class="product-item__quick-buy" 
+              {{ block.shopify_attributes }}
+            >
+              {%- render 'quick-buy', product: product, button_classes: 'button--regular button--fullwidth', layout: layout -%}
+            </div>
+          {%- endif -%}
+
+        {%- when 'rating' -%}
+          
+          <div 
+            class="product-item__ratings"
+            {{ block.shopify_attributes }}
+          >
+            {%- render 'star-rating', reviews: product.metafields.reviews, hide_no_reviews_on_mobile: true -%}
+          </div>
+
+        {%- when 'local_availability' -%}
+
+        <div id="variant-inventory">
+          {% if product.variants.first.inventory_management == "shopify" %}
+          {% if product.tags contains "PREORDER" %}
+            {% assign today = 'now' | date: '%s' %}
+            {% if product.metafields.custom.delayed_release_date.value != null %}
+              {% assign delayed_release_date = product.metafields.custom.delayed_release_date | date: '%s' %}
+              {% if today < delayed_release_date %}
+                <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1878b9" viewBox="0 0 24 24"><path d="M15.91 13.34l2.636-4.026-.454-.406-3.673 3.099c-.675-.138-1.402.068-1.894.618-.736.823-.665 2.088.159 2.824.824.736 2.088.665 2.824-.159.492-.55.615-1.295.402-1.95zm-3.91-10.646v-2.694h4v2.694c-1.439-.243-2.592-.238-4 0zm8.851 2.064l1.407-1.407 1.414 1.414-1.321 1.321c-.462-.484-.964-.927-1.5-1.328zm-18.851 4.242h8v2h-8v-2zm-2 4h8v2h-8v-2zm3 4h7v2h-7v-2zm21-3c0 5.523-4.477 10-10 10-2.79 0-5.3-1.155-7.111-3h3.28c1.138.631 2.439 1 3.831 1 4.411 0 8-3.589 8-8s-3.589-8-8-8c-1.392 0-2.693.369-3.831 1h-3.28c1.811-1.845 4.321-3 7.111-3 5.523 0 10 4.477 10 10z"/></svg>
+                <p class="availability-pre-order"> Coming soon</p></span>
+                <span><p class="availability-pre-order">Release Date: {{ product.metafields.custom.delayed_release_date.value | date: "%b %d, %Y"}}</p></span>
+              {% endif %}
+            {% endif %}    
+            {% if product.metafields.custom.delayed_release_date.value == null and product.metafields.custom.release_date.value != null %}
+              {% assign release_date = product.metafields.custom.release_date | date: '%s' %}
+              {% if today < release_date %}
+                <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1878b9" viewBox="0 0 24 24"><path d="M15.91 13.34l2.636-4.026-.454-.406-3.673 3.099c-.675-.138-1.402.068-1.894.618-.736.823-.665 2.088.159 2.824.824.736 2.088.665 2.824-.159.492-.55.615-1.295.402-1.95zm-3.91-10.646v-2.694h4v2.694c-1.439-.243-2.592-.238-4 0zm8.851 2.064l1.407-1.407 1.414 1.414-1.321 1.321c-.462-.484-.964-.927-1.5-1.328zm-18.851 4.242h8v2h-8v-2zm-2 4h8v2h-8v-2zm3 4h7v2h-7v-2zm21-3c0 5.523-4.477 10-10 10-2.79 0-5.3-1.155-7.111-3h3.28c1.138.631 2.439 1 3.831 1 4.411 0 8-3.589 8-8s-3.589-8-8-8c-1.392 0-2.693.369-3.831 1h-3.28c1.811-1.845 4.321-3 7.111-3 5.523 0 10 4.477 10 10z"/></svg>
+                <p class="availability-pre-order"> Coming soon</p></span>
+                <span><p class="availability-pre-order">Release Date: {{ product.metafields.custom.release_date.value | date: "%b %d, %Y"}}</p></span>
+                  {% elsif product_variant.inventory_quantity > 0 %}
+                    <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                    </svg>
+                    <p class="availability-in-stock">In Stock</p></span>
+              {% endif %}
+            {% endif %}
+            {% if product.metafields.custom.release_date.value == null and product.metafields.custom.release_date_month.value != null %}
+              <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1878b9" viewBox="0 0 24 24"><path d="M15.91 13.34l2.636-4.026-.454-.406-3.673 3.099c-.675-.138-1.402.068-1.894.618-.736.823-.665 2.088.159 2.824.824.736 2.088.665 2.824-.159.492-.55.615-1.295.402-1.95zm-3.91-10.646v-2.694h4v2.694c-1.439-.243-2.592-.238-4 0zm8.851 2.064l1.407-1.407 1.414 1.414-1.321 1.321c-.462-.484-.964-.927-1.5-1.328zm-18.851 4.242h8v2h-8v-2zm-2 4h8v2h-8v-2zm3 4h7v2h-7v-2zm21-3c0 5.523-4.477 10-10 10-2.79 0-5.3-1.155-7.111-3h3.28c1.138.631 2.439 1 3.831 1 4.411 0 8-3.589 8-8s-3.589-8-8-8c-1.392 0-2.693.369-3.831 1h-3.28c1.811-1.845 4.321-3 7.111-3 5.523 0 10 4.477 10 10z"/></svg>
+              <p class="availability-pre-order"> Coming soon</p></span>
+              <span><p class="availability-pre-order">Release Date: {{ product.metafields.custom.release_date_month.value | date: "%b, %Y"}}</p></span>
+                {% endif %}
+          {% elsif product_variant.inventory_quantity > 0 %}
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+              </svg>
+            <p class="availability-in-stock">In Stock</p></span>
+          {% else %}
+            <span class="icon">
+            <svg class="svg-icon" viewBox="0 0 20 20" width="14" height="14" fill="grey">
+							<path d="M10.185,1.417c-4.741,0-8.583,3.842-8.583,8.583c0,4.74,3.842,8.582,8.583,8.582S18.768,14.74,18.768,10C18.768,5.259,14.926,1.417,10.185,1.417 M10.185,17.68c-4.235,0-7.679-3.445-7.679-7.68c0-4.235,3.444-7.679,7.679-7.679S17.864,5.765,17.864,10C17.864,14.234,14.42,17.68,10.185,17.68 M10.824,10l2.842-2.844c0.178-0.176,0.178-0.46,0-0.637c-0.177-0.178-0.461-0.178-0.637,0l-2.844,2.841L7.341,6.52c-0.176-0.178-0.46-0.178-0.637,0c-0.178,0.176-0.178,0.461,0,0.637L9.546,10l-2.841,2.844c-0.178,0.176-0.178,0.461,0,0.637c0.178,0.178,0.459,0.178,0.637,0l2.844-2.841l2.844,2.841c0.178,0.178,0.459,0.178,0.637,0c0.178-0.176,0.178-0.461,0-0.637L10.824,10z"></path>
+						</svg>
+            <p class="availability-out-of-stock">Sold Out</p></span>
+          {% endif %}
+          {% endif %}
+        </div>
+
+      {%- endcase %}
+    {%- endfor -%}
+
+  </div>
+
+  {%- unless blank_product -%}
+
+    <div class="product-item__badges text-size--xsmall">
+
+      {%- if product.available == false -%}
+        <span class="product-item__badge"
+          style="background-color: {{ settings.product_card_badge_sold_out_color }}; color: {{ settings.product_card_badge_sold_out_text_color }}"
+        >
+          {{ 'products.grid.sold_out_product' | t }}
+        </span>
+      {%- endif -%}
+
+      {%- if product.compare_at_price > product.price -%}
+
+        <span class="product-item__badge"
+          style="background-color: {{ settings.product_card_badge_sale_color }}; color: {{ settings.product_card_badge_sale_text_color }}"
+        > 
+          {%- if settings.product_card_badge_sale_type == 'percentage' -%}
+            -{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}%
+          {%- else -%}
+            {{ 'products.grid.on_sale_product' | t }}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+
+      {% if product.tags contains "PREORDER" %}
+        {% assign today = 'now' | date: '%s' %}
+        {% assign release_date = product.metafields.custom.release_date | date: '%s' %}
+        {% assign delayed_release_date = product.metafields.custom.delayed_release_date | date: '%s' %}
+        {% assign release_month = product.metafields.custom.release-date-month | date: "%b %y" %}
+        {% assign current_month = 'now' | date: "%b %y" %}
+          {% if delayed_release_date %}
+            {% if release_date > delayed_release_date %}
+            {% assign deciding_date = release_date %}
+              {% if today < deciding_date %}
+                <span class="product-item__badge"
+                  style="background-color: #1878b9; color: #ffffff">
+                  PREORDER
+                </span>
+              {% endif %}
+            {% else %}
+              {% assign deciding_date = delayed_release_date %}
+              {% if today < deciding_date %}
+                 <span class="product-item__badge"
+                  style="background-color: #1878b9; color: #ffffff">
+                  PREORDER
+                </span>
+              {% endif %}
+            {% endif %}
+          {% elsif today < release_date %}
+            <span class="product-item__badge"
+              style="background-color: #1878b9; color: #ffffff">
+              PREORDER
+            </span>
+          
+          {% endif %}
+        {% endif %}
+
+      {%- if settings.product_card_badge_custom_1_tags != blank and product.tags contains settings.product_card_badge_custom_1_tags -%}
+        <span class="product-item__badge"
+          style="background-color: {{ settings.product_card_badge_custom_1_color }}; color: {{ settings.product_card_badge_custom_1_text_color }}"
+        >
+          {{ settings.product_card_badge_custom_1_text }}
+        </span>
+      {%- endif -%}
+
+      {%- if settings.product_card_badge_custom_2_tags != blank and product.tags contains settings.product_card_badge_custom_2_tags -%}
+        <span class="product-item__badge"
+          style="background-color: {{ settings.product_card_badge_custom_2_color }}; color: {{ settings.product_card_badge_custom_2_text_color }}"
+        >
+          {{ settings.product_card_badge_custom_2_text }}
+        </span>
+      {%- endif -%}
+
+      {%- if settings.product_card_badge_custom_3_tags != blank and product.tags contains settings.product_card_badge_custom_3_tags -%}
+        <span class="product-item__badge"
+          style="background-color: {{ settings.product_card_badge_custom_3_color }}; color: {{ settings.product_card_badge_custom_3_text_color }}"
+        >
+          {{ settings.product_card_badge_custom_3_text }}
+        </span>
+      {%- endif -%}
+
+    </div>
+
+  {%- endunless -%}
+
+</div>

@@ -1,0 +1,10 @@
+<div id="product-stock">
+  <h2>{{ settings.block_title }}</h2>
+  {% if settings.show_store_info %}
+    <div id="store-stock-info">
+      <p>Stock available at:</p>
+      <!-- Display store-specific info here -->
+    </div>
+  {% endif %}
+  <button id="change-store" type="button">Change Store</button>
+</div>

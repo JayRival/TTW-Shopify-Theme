@@ -1,0 +1,42 @@
+{%- liquid
+
+  assign star_size = 20
+  if reviews.rating.value != blank 
+    assign scale_max = reviews.rating.value.scale_max
+    assign active_stars_shown = reviews.rating.value | replace: ".", "." | times: 100 | divided_by: scale_max
+  else 
+    assign no_reviews = true
+    assign scale_max = 5
+  endif
+
+-%}
+
+<div class="star-rating" aria-label="">
+
+  <span class="visually-hidden">
+    {%- liquid
+      unless no_reviews 
+        echo 'general.accessibility_labels.rating_info' | t: rating_value: reviews.rating.value, rating_max: reviews.rating.value.scale_max
+      else 
+        echo 'products.page.reviews_count.none' | t
+      endunless
+    -%}
+  </span>
+    
+  <span class="star-rating__stars" style="
+    width:{{ scale_max | times: star_size }}px;
+  ">
+    <span class="star-rating__stars-active" style="width:{{ active_stars_shown }}%"></span>
+  </span>
+  
+  <span class="star-rating__caption text-size--xsmall {% if hide_no_reviews_on_mobile %} palm-hide {% endif %}">
+    {%- liquid
+      unless no_reviews 
+        echo reviews.rating_count | prepend: '(' | append: ')'
+      else
+        echo 'products.page.reviews_count.none' | t
+      endunless
+    -%}
+  </span>
+
+</div>

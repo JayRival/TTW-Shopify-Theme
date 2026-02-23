@@ -1,1 +1,683 @@
-{"sections":{"165406738229739f4d":{"type":"promotion-cards","blocks":{"9b334e60-f0a7-4687-834f-ff2ab580c581":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/TMT_sma_key_1000x1000_de1a64f6-2e0d-456c-9926-ac995a3d5fa8.jpg","caption":"Magic the Gathering","title":"Teenage Mutant Ninja Turtles","subtitle":"Preorder Now","link":"shopify:\/\/collections\/magic-26-02-teenage-mutant-ninja-turtles","button_label":"Show more","color_background_main":"#f4f4f4","color_text_main":"rgba(0,0,0,0)","color_borders_main":"#f4f4f4","color_hide_borders":false}},"16540673826052f668-0":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/Ascended_Heroes-banner_c059db33-6ec9-489b-8d5b-9ffa08b64cc2.jpg","caption":"Pokemon","title":"Ascended Heroes","subtitle":"Preorder Now","link":"shopify:\/\/collections\/pokeon-2026-02-me2-5-ascended-heroes","button_label":"Show more","color_background_main":"#f4f4f4","color_text_main":"rgba(0,0,0,0)","color_borders_main":"#dfdbd4","color_hide_borders":true}},"16540673826052f668-1":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/LOGO_004c1383-7830-42ba-8e47-7fe79824fb3b.jpg","caption":"Star Wars Unlimited","title":"A Lawless Time","subtitle":"Preorder Now","link":"shopify:\/\/collections\/star-wars-unlimited-a-lawless-time","button_label":"Show more","color_background_main":"#f4f4f4","color_text_main":"rgba(0,0,0,0)","color_borders_main":"#f4f4f4","color_hide_borders":true}},"16540673826052f668-2":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/LOGO_d23391c6-4428-48ed-8ee7-7b5710467a7d.jpg","caption":"Disney Lorcana","title":"Winterspell","subtitle":"Preorder Now","link":"shopify:\/\/collections\/disney-lorcana-winterspell","button_label":"Show more","color_background_main":"#f4f4f4","color_text_main":"rgba(0,0,0,0)","color_borders_main":"#dfdbd4","color_hide_borders":true}}},"block_order":["9b334e60-f0a7-4687-834f-ff2ab580c581","16540673826052f668-0","16540673826052f668-1","16540673826052f668-2"],"settings":{"heading":"","subheading":"","layout":"grid-4 grid-portable-2 grid-lap-1","image_aspect_ratio":"1","text_alignment":"text-align--center","caption_size":"large","title_size":"h3","subtitle_size":"regular","button_size":"regular","button_style":"solid"}},"4473f080-d9f2-4f96-ab10-b169652f6b1c":{"type":"featured-preorder-collection","blocks":{"b38d94dd-526b-4169-9b40-6eafe0c10f62":{"type":"vendor","settings":{}},"template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-title-1":{"type":"title","settings":{}},"template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-price-1":{"type":"price","settings":{}},"template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-quick_buy-1":{"type":"quick_buy","settings":{}},"3db4243e-b583-4ead-ac06-808fe27355d7":{"type":"local_availability","settings":{}}},"block_order":["b38d94dd-526b-4169-9b40-6eafe0c10f62","template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-title-1","template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-price-1","template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-quick_buy-1","3db4243e-b583-4ead-ac06-808fe27355d7"],"settings":{"heading":"PRE-ORDERS","subheading":"","show_view_all":true,"style":"slider","layout":"grid-4 grid-portable-3 grid-lap-2 grid-tiny-1","products_number":8,"collection":"pre-orders"}},"featured-collection":{"type":"featured-collection","blocks":{"83f6a7c0-2419-47e9-99b5-e1f75f5fd123":{"type":"vendor","settings":{}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"2fe5312e-e69f-45d1-bac2-bcdf636d2cf0":{"type":"rating","disabled":true,"settings":{}},"quick_buy":{"type":"quick_buy","settings":{}},"0732fb3a-f464-4724-9427-62214bde5409":{"type":"local_availability","settings":{}}},"block_order":["83f6a7c0-2419-47e9-99b5-e1f75f5fd123","title","price","2fe5312e-e69f-45d1-bac2-bcdf636d2cf0","quick_buy","0732fb3a-f464-4724-9427-62214bde5409"],"disabled":true,"settings":{"heading":"PRE-ORDERS","subheading":"","show_view_all":true,"style":"slider","layout":"grid-4 grid-portable-3 grid-lap-2 grid-tiny-1","products_number":12,"collection":"pre-orders"}},"bfadc5a5-8374-47e7-8b0b-cef76470cb5b":{"type":"featured-collection","blocks":{"6ac3576f-a654-4231-ae60-ef8a857079f8":{"type":"vendor","settings":{}},"template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-1":{"type":"title","settings":{}},"template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-0":{"type":"price","settings":{}},"2dc506bb-3d73-4f16-9cfa-7616e2bbdc68":{"type":"rating","disabled":true,"settings":{}},"template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-2":{"type":"quick_buy","settings":{}},"08a5e66c-bb8f-4102-9674-260722b3f222":{"type":"local_availability","settings":{}}},"block_order":["6ac3576f-a654-4231-ae60-ef8a857079f8","template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-1","template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-0","2dc506bb-3d73-4f16-9cfa-7616e2bbdc68","template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-2","08a5e66c-bb8f-4102-9674-260722b3f222"],"settings":{"heading":"BEST SELLERS","subheading":"","show_view_all":true,"style":"slider","layout":"grid-4 grid-portable-3 grid-lap-2 grid-tiny-1","products_number":12,"collection":"best-sellers"}},"db5f0fbe-c297-4bcf-8c1c-459592bd5c2d":{"type":"featured-collection","blocks":{"1e5dbebd-0117-4217-a84b-f39f00ae0bf3":{"type":"vendor","settings":{}},"template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-1":{"type":"title","settings":{}},"template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-0":{"type":"price","settings":{}},"5c5567b8-d807-4e9c-984b-acb48e551a6d":{"type":"rating","disabled":true,"settings":{}},"template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-2":{"type":"quick_buy","settings":{}},"8c1b46ee-7517-4f10-b9d8-a8d6a0f63149":{"type":"local_availability","settings":{}}},"block_order":["1e5dbebd-0117-4217-a84b-f39f00ae0bf3","template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-1","template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-0","5c5567b8-d807-4e9c-984b-acb48e551a6d","template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-2","8c1b46ee-7517-4f10-b9d8-a8d6a0f63149"],"settings":{"heading":"NEW ARRIVALS","subheading":"","show_view_all":true,"style":"slider","layout":"grid-4 grid-portable-3 grid-lap-2 grid-tiny-1","products_number":12,"collection":"new-arrivals"}},"16551074833cdf378e":{"type":"media-with-text-overlay","blocks":{"16551074836af554cd-0":{"type":"image","settings":{"image_alignment":"50% 50%","video_url":"","caption":"Introducing","title":"Your best promotion yet","subtitle":"Write about it","link":"","button_label":"","color_background_main":"rgba(0,0,0,0)","color_text_main":"rgba(0,0,0,0)","color_hide_borders":true}},"16551074836af554cd-1":{"type":"image","settings":{"image_alignment":"50% 50%","video_url":"","caption":"Introducing","title":"Your best promotion yet","subtitle":"Write about it","link":"","button_label":"","color_background_main":"rgba(0,0,0,0)","color_text_main":"rgba(0,0,0,0)","color_hide_borders":true}}},"block_order":["16551074836af554cd-0","16551074836af554cd-1"],"disabled":true,"settings":{"heading":"","subheading":"","layout":"grid-2 grid-lap-1","height":"regular","alignment":"horizontal-left align-content--vertical-bottom","width":"60%","caption_size":"small","title_size":"h3","subtitle_size":"regular","button_size":"regular","button_style":"solid"}},"165407625224b5d2af":{"type":"rich-text","blocks":{"1654076252f525bcb1-1":{"type":"text","settings":{"text":"<p><strong>Up to 50% discount<\/strong><\/p>","text_size":"regular"}},"1654076252f525bcb1-0":{"type":"title","settings":{"title":"About our products","title_size":"h1"}},"4055a9b7-fa9d-4a7a-b5e0-d052561d6f9c":{"type":"text","settings":{"text":"<p>Write a big, bold statement about your brand. Catch your visitors attention by using some additional images with your products or store.<\/p>","text_size":"regular"}},"1654076252f525bcb1-2":{"type":"button","settings":{"button_label":"Learn more","link":"","button_size":"large","button_style":"solid"}}},"block_order":["1654076252f525bcb1-1","1654076252f525bcb1-0","4055a9b7-fa9d-4a7a-b5e0-d052561d6f9c","1654076252f525bcb1-2"],"disabled":true,"settings":{"image_position":"right","height":"large","image_crop":true,"is_fullwidth":true,"remove_margin":false,"text_alignment":"horizontal-left","color_background_main":"#e7e7e7","color_text_main":"rgba(0,0,0,0)","color_borders_main":"#e1e1e1","color_hide_borders":true}},"165650871288cb3c80":{"type":"media-with-text-overlay","blocks":{"1656508712d3848f85-0":{"type":"image","settings":{"image_alignment":"50% 50%","video_url":"\/\/cdn.shopify.com\/s\/files\/1\/0266\/9543\/4315\/files\/Share_your_brand_story_by_adding_a_video_to_your_store.mp4?3663","caption":"Introducing","title":"Your best promotion yet","subtitle":"","link":"","button_label":"Show more","color_background_main":"#000000","color_text_main":"#ffffff","color_hide_borders":true}}},"block_order":["1656508712d3848f85-0"],"disabled":true,"settings":{"heading":"","subheading":"","layout":"grid-1","height":"large","alignment":"horizontal-center align-content--vertical-middle","width":"60%","caption_size":"regular","title_size":"h1","subtitle_size":"regular","button_size":"large","button_style":"outline"}},"1657094048f07fb2a2":{"type":"marquee","blocks":{"16570940482780d791-0":{"type":"text","settings":{"marquee_text":"<p>Write a big bold statement about your brand!<\/p>"}},"17541091-3633-48b6-97e0-ca55f3bf4a9f":{"type":"text","settings":{"marquee_text":"<p>Introduce your latest promotions.<\/p>"}}},"block_order":["16570940482780d791-0","17541091-3633-48b6-97e0-ca55f3bf4a9f"],"disabled":true,"settings":{"scroll_direction":"left","speed":20,"pause_on_hover":true,"remove_top_margin":false,"color_background_main":"#dfdbd4","color_text_main":"#000000"}},"1654161920efe5f084":{"type":"text-columns-icons","blocks":{"1654161920f21316cf-0":{"type":"image","settings":{"icon":"delivery","title":"Flat Rate Shipping","caption":"Available nation wide with express and courier options","link":"","color_background_main":"rgba(0,0,0,0)","color_icons_main":"rgba(0,0,0,0)"}},"1654161920f21316cf-2":{"type":"image","settings":{"icon":"store","title":"Click & Collect","caption":"Buy online and collect at your local store same day","link":"","color_background_main":"rgba(0,0,0,0)","color_icons_main":"rgba(0,0,0,0)"}},"1654161920f21316cf-1":{"type":"image","settings":{"icon":"wallet","title":"Buy Now. Pay Later","caption":"Buy Now and Pay Later with leading providers including Zip and Afterpay","link":"","color_background_main":"rgba(0,0,0,0)","color_icons_main":"rgba(0,0,0,0)"}},"1654161920f21316cf-3":{"type":"image","settings":{"icon":"favorite","title":"Your Local Game Store","caption":"We're a local game store providing an open and fun hobby space","link":"","color_background_main":"rgba(0,0,0,0)","color_icons_main":"rgba(0,0,0,0)"}}},"block_order":["1654161920f21316cf-0","1654161920f21316cf-2","1654161920f21316cf-1","1654161920f21316cf-3"],"settings":{"heading":"","subheading":"","style":"slider","layout":"grid-4 grid-portable-3 grid-lap-2","border_radius":0}},"1655112847aaa4cc50":{"type":"newsletter","settings":{"show_icon":false,"title":"Sign up for our newsletter","text":"<p>Get access to exclusive offers and news. Stay up-to-date with the latest happenings, events and loads more! Sign up with your email now.<\/p>","color_background_main":"#000000","color_text_main":"#ffffff","color_borders_main":"rgba(0,0,0,0)"}}},"order":["165406738229739f4d","4473f080-d9f2-4f96-ab10-b169652f6b1c","featured-collection","bfadc5a5-8374-47e7-8b0b-cef76470cb5b","db5f0fbe-c297-4bcf-8c1c-459592bd5c2d","16551074833cdf378e","165407625224b5d2af","165650871288cb3c80","1657094048f07fb2a2","1654161920efe5f084","1655112847aaa4cc50"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "165406738229739f4d": {
+      "type": "promotion-cards",
+      "blocks": {
+        "9b334e60-f0a7-4687-834f-ff2ab580c581": {
+          "type": "card",
+          "settings": {
+            "caption": "Magic the Gathering",
+            "title": "Teenage Mutant Ninja Turtles",
+            "subtitle": "Preorder Now",
+            "link": "shopify://collections/magic-26-02-teenage-mutant-ninja-turtles",
+            "button_label": "Show more",
+            "color_background_main": "#f4f4f4",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "#f4f4f4",
+            "color_hide_borders": false
+          }
+        },
+        "16540673826052f668-0": {
+          "type": "card",
+          "settings": {
+            "caption": "Pokemon",
+            "title": "Ascended Heroes",
+            "subtitle": "Preorder Now",
+            "link": "shopify://collections/pokeon-2026-02-me2-5-ascended-heroes",
+            "button_label": "Show more",
+            "color_background_main": "#f4f4f4",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "#dfdbd4",
+            "color_hide_borders": true
+          }
+        },
+        "16540673826052f668-1": {
+          "type": "card",
+          "settings": {
+            "caption": "Star Wars Unlimited",
+            "title": "A Lawless Time",
+            "subtitle": "Preorder Now",
+            "link": "shopify://collections/star-wars-unlimited-a-lawless-time",
+            "button_label": "Show more",
+            "color_background_main": "#f4f4f4",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "#f4f4f4",
+            "color_hide_borders": true
+          }
+        },
+        "16540673826052f668-2": {
+          "type": "card",
+          "settings": {
+            "caption": "Disney Lorcana",
+            "title": "Winterspell",
+            "subtitle": "Preorder Now",
+            "link": "shopify://collections/disney-lorcana-winterspell",
+            "button_label": "Show more",
+            "color_background_main": "#f4f4f4",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "#dfdbd4",
+            "color_hide_borders": true
+          }
+        }
+      },
+      "block_order": [
+        "9b334e60-f0a7-4687-834f-ff2ab580c581",
+        "16540673826052f668-0",
+        "16540673826052f668-1",
+        "16540673826052f668-2"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "layout": "grid-4 grid-portable-2 grid-lap-1",
+        "image_aspect_ratio": "1",
+        "text_alignment": "text-align--center",
+        "caption_size": "large",
+        "title_size": "h3",
+        "subtitle_size": "regular",
+        "button_size": "regular",
+        "button_style": "solid"
+      }
+    },
+    "4473f080-d9f2-4f96-ab10-b169652f6b1c": {
+      "type": "featured-preorder-collection",
+      "blocks": {
+        "b38d94dd-526b-4169-9b40-6eafe0c10f62": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-title-1": {
+          "type": "title",
+          "settings": {}
+        },
+        "template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-price-1": {
+          "type": "price",
+          "settings": {}
+        },
+        "template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-quick_buy-1": {
+          "type": "quick_buy",
+          "settings": {}
+        },
+        "3db4243e-b583-4ead-ac06-808fe27355d7": {
+          "type": "local_availability",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b38d94dd-526b-4169-9b40-6eafe0c10f62",
+        "template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-title-1",
+        "template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-price-1",
+        "template--17124272111926__4473f080-d9f2-4f96-ab10-b169652f6b1c-quick_buy-1",
+        "3db4243e-b583-4ead-ac06-808fe27355d7"
+      ],
+      "settings": {
+        "heading": "PRE-ORDERS",
+        "subheading": "",
+        "show_view_all": true,
+        "style": "slider",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 8,
+        "collection": "pre-orders"
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "blocks": {
+        "83f6a7c0-2419-47e9-99b5-e1f75f5fd123": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "2fe5312e-e69f-45d1-bac2-bcdf636d2cf0": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {}
+        },
+        "quick_buy": {
+          "type": "quick_buy",
+          "settings": {}
+        },
+        "0732fb3a-f464-4724-9427-62214bde5409": {
+          "type": "local_availability",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "83f6a7c0-2419-47e9-99b5-e1f75f5fd123",
+        "title",
+        "price",
+        "2fe5312e-e69f-45d1-bac2-bcdf636d2cf0",
+        "quick_buy",
+        "0732fb3a-f464-4724-9427-62214bde5409"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "PRE-ORDERS",
+        "subheading": "",
+        "show_view_all": true,
+        "style": "slider",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 12,
+        "collection": "pre-orders"
+      }
+    },
+    "bfadc5a5-8374-47e7-8b0b-cef76470cb5b": {
+      "type": "featured-collection",
+      "blocks": {
+        "6ac3576f-a654-4231-ae60-ef8a857079f8": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-1": {
+          "type": "title",
+          "settings": {}
+        },
+        "template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-0": {
+          "type": "price",
+          "settings": {}
+        },
+        "2dc506bb-3d73-4f16-9cfa-7616e2bbdc68": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {}
+        },
+        "template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-2": {
+          "type": "quick_buy",
+          "settings": {}
+        },
+        "08a5e66c-bb8f-4102-9674-260722b3f222": {
+          "type": "local_availability",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "6ac3576f-a654-4231-ae60-ef8a857079f8",
+        "template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-1",
+        "template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-0",
+        "2dc506bb-3d73-4f16-9cfa-7616e2bbdc68",
+        "template--16672210944310__bfadc5a5-8374-47e7-8b0b-cef76470cb5b-16685667337273d340-2",
+        "08a5e66c-bb8f-4102-9674-260722b3f222"
+      ],
+      "settings": {
+        "heading": "BEST SELLERS",
+        "subheading": "",
+        "show_view_all": true,
+        "style": "slider",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 12,
+        "collection": "best-sellers"
+      }
+    },
+    "db5f0fbe-c297-4bcf-8c1c-459592bd5c2d": {
+      "type": "featured-collection",
+      "blocks": {
+        "1e5dbebd-0117-4217-a84b-f39f00ae0bf3": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-1": {
+          "type": "title",
+          "settings": {}
+        },
+        "template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-0": {
+          "type": "price",
+          "settings": {}
+        },
+        "5c5567b8-d807-4e9c-984b-acb48e551a6d": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {}
+        },
+        "template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-2": {
+          "type": "quick_buy",
+          "settings": {}
+        },
+        "8c1b46ee-7517-4f10-b9d8-a8d6a0f63149": {
+          "type": "local_availability",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "1e5dbebd-0117-4217-a84b-f39f00ae0bf3",
+        "template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-1",
+        "template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-0",
+        "5c5567b8-d807-4e9c-984b-acb48e551a6d",
+        "template--16672210944310__db5f0fbe-c297-4bcf-8c1c-459592bd5c2d-16685667337273d340-2",
+        "8c1b46ee-7517-4f10-b9d8-a8d6a0f63149"
+      ],
+      "settings": {
+        "heading": "NEW ARRIVALS",
+        "subheading": "",
+        "show_view_all": true,
+        "style": "slider",
+        "layout": "grid-4 grid-portable-3 grid-lap-2 grid-tiny-1",
+        "products_number": 12,
+        "collection": "new-arrivals"
+      }
+    },
+    "16551074833cdf378e": {
+      "type": "media-with-text-overlay",
+      "blocks": {
+        "16551074836af554cd-0": {
+          "type": "image",
+          "settings": {
+            "image_alignment": "50% 50%",
+            "video_url": "",
+            "caption": "Introducing",
+            "title": "Your best promotion yet",
+            "subtitle": "Write about it",
+            "link": "",
+            "button_label": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_hide_borders": true
+          }
+        },
+        "16551074836af554cd-1": {
+          "type": "image",
+          "settings": {
+            "image_alignment": "50% 50%",
+            "video_url": "",
+            "caption": "Introducing",
+            "title": "Your best promotion yet",
+            "subtitle": "Write about it",
+            "link": "",
+            "button_label": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_hide_borders": true
+          }
+        }
+      },
+      "block_order": [
+        "16551074836af554cd-0",
+        "16551074836af554cd-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "layout": "grid-2 grid-lap-1",
+        "height": "regular",
+        "alignment": "horizontal-left align-content--vertical-bottom",
+        "width": "60%",
+        "caption_size": "small",
+        "title_size": "h3",
+        "subtitle_size": "regular",
+        "button_size": "regular",
+        "button_style": "solid"
+      }
+    },
+    "165407625224b5d2af": {
+      "type": "rich-text",
+      "blocks": {
+        "1654076252f525bcb1-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Up to 50% discount</strong></p>",
+            "text_size": "regular"
+          }
+        },
+        "1654076252f525bcb1-0": {
+          "type": "title",
+          "settings": {
+            "title": "About our products",
+            "title_size": "h1"
+          }
+        },
+        "4055a9b7-fa9d-4a7a-b5e0-d052561d6f9c": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Write a big, bold statement about your brand. Catch your visitors attention by using some additional images with your products or store.</p>",
+            "text_size": "regular"
+          }
+        },
+        "1654076252f525bcb1-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "Learn more",
+            "link": "",
+            "button_size": "large",
+            "button_style": "solid"
+          }
+        }
+      },
+      "block_order": [
+        "1654076252f525bcb1-1",
+        "1654076252f525bcb1-0",
+        "4055a9b7-fa9d-4a7a-b5e0-d052561d6f9c",
+        "1654076252f525bcb1-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image_position": "right",
+        "height": "large",
+        "image_crop": true,
+        "is_fullwidth": true,
+        "remove_margin": false,
+        "text_alignment": "horizontal-left",
+        "color_background_main": "#e7e7e7",
+        "color_text_main": "rgba(0,0,0,0)",
+        "color_borders_main": "#e1e1e1",
+        "color_hide_borders": true
+      }
+    },
+    "165650871288cb3c80": {
+      "type": "media-with-text-overlay",
+      "blocks": {
+        "1656508712d3848f85-0": {
+          "type": "image",
+          "settings": {
+            "image_alignment": "50% 50%",
+            "video_url": "//cdn.shopify.com/s/files/1/0266/9543/4315/files/Share_your_brand_story_by_adding_a_video_to_your_store.mp4?3663",
+            "caption": "Introducing",
+            "title": "Your best promotion yet",
+            "subtitle": "",
+            "link": "",
+            "button_label": "Show more",
+            "color_background_main": "#000000",
+            "color_text_main": "#ffffff",
+            "color_hide_borders": true
+          }
+        }
+      },
+      "block_order": [
+        "1656508712d3848f85-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "layout": "grid-1",
+        "height": "large",
+        "alignment": "horizontal-center align-content--vertical-middle",
+        "width": "60%",
+        "caption_size": "regular",
+        "title_size": "h1",
+        "subtitle_size": "regular",
+        "button_size": "large",
+        "button_style": "outline"
+      }
+    },
+    "1657094048f07fb2a2": {
+      "type": "marquee",
+      "blocks": {
+        "16570940482780d791-0": {
+          "type": "text",
+          "settings": {
+            "marquee_text": "<p>Write a big bold statement about your brand!</p>"
+          }
+        },
+        "17541091-3633-48b6-97e0-ca55f3bf4a9f": {
+          "type": "text",
+          "settings": {
+            "marquee_text": "<p>Introduce your latest promotions.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "16570940482780d791-0",
+        "17541091-3633-48b6-97e0-ca55f3bf4a9f"
+      ],
+      "disabled": true,
+      "settings": {
+        "scroll_direction": "left",
+        "speed": 20,
+        "pause_on_hover": true,
+        "remove_top_margin": false,
+        "color_background_main": "#dfdbd4",
+        "color_text_main": "#000000"
+      }
+    },
+    "1654161920efe5f084": {
+      "type": "text-columns-icons",
+      "blocks": {
+        "1654161920f21316cf-0": {
+          "type": "image",
+          "settings": {
+            "icon": "delivery",
+            "title": "Flat Rate Shipping",
+            "caption": "Available nation wide with express and courier options",
+            "link": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)"
+          }
+        },
+        "1654161920f21316cf-2": {
+          "type": "image",
+          "settings": {
+            "icon": "store",
+            "title": "Click & Collect",
+            "caption": "Buy online and collect at your local store same day",
+            "link": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)"
+          }
+        },
+        "1654161920f21316cf-1": {
+          "type": "image",
+          "settings": {
+            "icon": "wallet",
+            "title": "Buy Now. Pay Later",
+            "caption": "Buy Now and Pay Later with leading providers including Zip and Afterpay",
+            "link": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)"
+          }
+        },
+        "1654161920f21316cf-3": {
+          "type": "image",
+          "settings": {
+            "icon": "favorite",
+            "title": "Your Local Game Store",
+            "caption": "We're a local game store providing an open and fun hobby space",
+            "link": "",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_icons_main": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "1654161920f21316cf-0",
+        "1654161920f21316cf-2",
+        "1654161920f21316cf-1",
+        "1654161920f21316cf-3"
+      ],
+      "settings": {
+        "heading": "",
+        "subheading": "",
+        "style": "slider",
+        "layout": "grid-4 grid-portable-3 grid-lap-2",
+        "border_radius": 0
+      }
+    },
+    "1655112847aaa4cc50": {
+      "type": "newsletter",
+      "settings": {
+        "show_icon": false,
+        "title": "Sign up for our newsletter",
+        "text": "<p>Get access to exclusive offers and news. Stay up-to-date with the latest happenings, events and loads more! Sign up with your email now.</p>",
+        "color_background_main": "#000000",
+        "color_text_main": "#ffffff",
+        "color_borders_main": "rgba(0,0,0,0)"
+      }
+    },
+    "promotion_cards_RVFttf": {
+      "type": "promotion-cards",
+      "blocks": {
+        "card_b6dJGR": {
+          "type": "card",
+          "settings": {
+            "caption": "Introducing",
+            "title": "Your best promotion yet",
+            "subtitle": "Write about it",
+            "link": "",
+            "button_label": "Show more",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "color_hide_borders": false
+          }
+        },
+        "card_Gn9hVH": {
+          "type": "card",
+          "settings": {
+            "caption": "Introducing",
+            "title": "Your best promotion yet",
+            "subtitle": "Write about it",
+            "link": "",
+            "button_label": "Show more",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "color_hide_borders": false
+          }
+        },
+        "card_9Xhakf": {
+          "type": "card",
+          "settings": {
+            "caption": "Introducing",
+            "title": "Your best promotion yet",
+            "subtitle": "Write about it",
+            "link": "",
+            "button_label": "Show more",
+            "color_background_main": "rgba(0,0,0,0)",
+            "color_text_main": "rgba(0,0,0,0)",
+            "color_borders_main": "rgba(0,0,0,0)",
+            "color_hide_borders": false
+          }
+        }
+      },
+      "block_order": [
+        "card_b6dJGR",
+        "card_Gn9hVH",
+        "card_9Xhakf"
+      ],
+      "name": "t:sections.local-extra-words.sections.promotion-cards.name",
+      "settings": {
+        "heading": "Promotion cards",
+        "subheading": "Share your best offers",
+        "layout": "grid-3 grid-lap-1",
+        "image_aspect_ratio": "1",
+        "text_alignment": "text-align--center",
+        "caption_size": "regular",
+        "title_size": "h3",
+        "subtitle_size": "regular",
+        "button_size": "large",
+        "button_style": "outline"
+      }
+    },
+    "177183649413213cf0": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_fded990_HkKVkR": {
+          "type": "ai_gen_block_fded990",
+          "settings": {
+            "number_of_cards": 5,
+            "cards_per_row": 3,
+            "cards_per_row_tablet": 2,
+            "cards_per_row_mobile": "2",
+            "mobile_layout": "scroll",
+            "mobile_card_width": 85,
+            "card_gap": 25,
+            "section_padding_top": 50,
+            "section_padding_bottom": 50,
+            "background_color": "#ffffff",
+            "card_background_color": "#ffffff",
+            "card_border_width": 1,
+            "card_border_color": "#e1e1e1",
+            "card_border_radius": 10,
+            "card_padding": 25,
+            "image_aspect_ratio": "4 / 3",
+            "text_alignment": "left",
+            "heading_size": 24,
+            "heading_color": "#0e0e0e",
+            "heading_spacing": 15,
+            "text_size": 16,
+            "text_color": "#0e0e0e",
+            "text_spacing": 20,
+            "button_text_size": 16,
+            "button_font_weight": "bold",
+            "button_padding_vertical": 12,
+            "button_padding_horizontal": 25,
+            "button_background_color": "#e9510e",
+            "button_text_color": "#ffffff",
+            "button_border_width": 0,
+            "button_border_color": "#e9510e",
+            "button_border_radius": 30,
+            "button_hover_background_color": "#0e0e0e",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#0e0e0e",
+            "scrollbar_color": "#e9510e",
+            "card_1_enabled": true,
+            "card_1_heading": "Promotion 1",
+            "card_1_text": "Describe your promotion or featured product here.",
+            "card_1_button_text": "Shop now",
+            "card_1_button_link": "",
+            "card_2_enabled": true,
+            "card_2_heading": "Promotion 2",
+            "card_2_text": "Describe your promotion or featured product here.",
+            "card_2_button_text": "Shop now",
+            "card_2_button_link": "",
+            "card_3_enabled": true,
+            "card_3_heading": "Promotion 3",
+            "card_3_text": "Describe your promotion or featured product here.",
+            "card_3_button_text": "Shop now",
+            "card_3_button_link": "",
+            "card_4_enabled": false,
+            "card_4_heading": "Promotion 4",
+            "card_4_text": "Describe your promotion or featured product here.",
+            "card_4_button_text": "Shop now",
+            "card_4_button_link": "",
+            "card_5_enabled": false,
+            "card_5_heading": "Promotion 5",
+            "card_5_text": "Describe your promotion or featured product here.",
+            "card_5_button_text": "Shop now",
+            "card_5_button_link": "",
+            "card_6_enabled": false,
+            "card_6_heading": "Promotion 6",
+            "card_6_text": "Describe your promotion or featured product here.",
+            "card_6_button_text": "Shop now",
+            "card_6_button_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_fded990_HkKVkR"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "165406738229739f4d",
+    "4473f080-d9f2-4f96-ab10-b169652f6b1c",
+    "featured-collection",
+    "bfadc5a5-8374-47e7-8b0b-cef76470cb5b",
+    "db5f0fbe-c297-4bcf-8c1c-459592bd5c2d",
+    "16551074833cdf378e",
+    "165407625224b5d2af",
+    "165650871288cb3c80",
+    "1657094048f07fb2a2",
+    "1654161920efe5f084",
+    "1655112847aaa4cc50",
+    "promotion_cards_RVFttf",
+    "177183649413213cf0"
+  ]
+}

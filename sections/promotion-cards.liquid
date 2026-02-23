@@ -178,36 +178,34 @@
 </div>
 
 <script>
-(function initPromoCardHint(){
+(function(){
 
-  const tryInit = () => {
+  function initPromoAutoScroll() {
     const scrollers = document.querySelectorAll('.promo-cards-scroll');
-
     if (!scrollers.length) {
-      setTimeout(tryInit, 400);
+      setTimeout(initPromoAutoScroll, 300);
       return;
     }
 
     scrollers.forEach(scroller => {
-      if (scroller.dataset.hintInit) return;
-      scroller.dataset.hintInit = "true";
-
-      let hasInteracted = false;
-      let intervalId = null;
+      if (scroller.dataset.autoInit) return;
+      scroller.dataset.autoInit = "true";
 
       const cards = scroller.querySelectorAll('.card');
       if (!cards.length) return;
+
+      let index = 0;
+      let stopped = false;
 
       const gap = 16;
 
       const cardWidth = () =>
         cards[0].getBoundingClientRect().width + gap;
 
-      // Stop everything on interaction
-      ['touchstart','mousedown','wheel','keydown','scroll'].forEach(evt => {
+      /* Stop on real user interaction only */
+      ['touchstart','mousedown','wheel','keydown'].forEach(evt => {
         scroller.addEventListener(evt, () => {
-          hasInteracted = true;
-          if (intervalId) clearInterval(intervalId);
+          stopped = true;
         }, { passive: true });
       });
 
@@ -215,57 +213,47 @@
         scroller.scrollBy({ left: 14, behavior: 'smooth' });
         setTimeout(() => {
           scroller.scrollBy({ left: -8, behavior: 'smooth' });
-        }, 160);
-        setTimeout(() => {
-          scroller.scrollBy({ left: 18, behavior: 'smooth' });
-        }, 320);
+        }, 150);
       };
 
-      const moveNext = () => {
-        if (hasInteracted) return;
+      const goToIndex = (i) => {
+        scroller.scrollTo({
+          left: Math.round(i * cardWidth()),
+          behavior: 'smooth'
+        });
+      };
 
-        const width = cardWidth();
-        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
-        let target = scroller.scrollLeft + width;
-
-        // Loop back to start
-        if (target >= maxScroll - 10) {
-          target = 0;
-        }
-
-        // Temporarily disable snap
-        const originalSnap = scroller.style.scrollSnapType;
-        scroller.style.scrollSnapType = 'none';
+      const step = () => {
+        if (stopped) return;
 
         wobble();
 
         setTimeout(() => {
-          scroller.scrollTo({
-            left: Math.round(target),
-            behavior: 'smooth'
-          });
+          index++;
 
-          // Restore snap
-          setTimeout(() => {
-            scroller.style.scrollSnapType = originalSnap || '';
-          }, 700);
+          if (index >= cards.length) {
+            index = 0;
+          }
 
-        }, 700);
+          goToIndex(index);
+
+        }, 500);
       };
 
-      // Start loop
+      /* Start after idle */
       setTimeout(() => {
-        if (hasInteracted) return;
-        intervalId = setInterval(moveNext, 3000);
+        if (stopped) return;
+        step();
+        setInterval(step, 3200);
       }, 2200);
 
     });
-  };
+  }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', tryInit);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPromoAutoScroll);
   } else {
-    tryInit();
+    initPromoAutoScroll();
   }
 
 })();

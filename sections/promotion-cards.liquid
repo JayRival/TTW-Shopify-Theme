@@ -177,6 +177,71 @@
 
 </div>
 
+<script>
+(function initPromoCardHint(){
+
+  const tryInit = () => {
+    const scrollers = document.querySelectorAll('.promo-cards-scroll');
+
+    if (!scrollers.length) {
+      // Try again shortly (section may load after DOMContentLoaded)
+      setTimeout(tryInit, 400);
+      return;
+    }
+
+    scrollers.forEach(scroller => {
+      if (scroller.dataset.hintInit) return;
+      scroller.dataset.hintInit = "true";
+
+      let hasInteracted = false;
+      let hasRun = false;
+
+      const cards = scroller.querySelectorAll('.card');
+      if (!cards.length) return;
+
+      const cardWidth = () =>
+        cards[0].getBoundingClientRect().width + 16;
+
+      // Detect interaction
+      ['touchstart','mousedown','wheel','keydown','scroll'].forEach(evt => {
+        scroller.addEventListener(evt, () => {
+          hasInteracted = true;
+        }, { passive: true });
+      });
+
+      // Idle hint
+      setTimeout(() => {
+        if (hasInteracted || hasRun) return;
+        hasRun = true;
+
+        // Micro nudge
+        scroller.scrollBy({
+          left: 24,
+          behavior: 'smooth'
+        });
+
+        // Then scroll to next card
+        setTimeout(() => {
+          scroller.scrollBy({
+            left: cardWidth(),
+            behavior: 'smooth'
+          });
+        }, 500);
+
+      }, 2200);
+
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryInit);
+  } else {
+    tryInit();
+  }
+
+})();
+</script>
+
 {% schema %}
   {
     "name": "t:sections.local-extra-words.sections.promotion-cards.name",
